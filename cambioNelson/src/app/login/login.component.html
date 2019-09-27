@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="login">
+        <form action="/login" method="POST">
+            <fieldset class="form-group">
+
+                <legend class="border-bottom mb-4">Ingresar</legend>
+                <div class="form-group">
+                    <label>Usuario</label>
+
+                    <input type="text" required placeholder="Username" name="username" value="{{
+            request.form.username }}">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" required placeholder="Password" name="password" value="{{
+            request.form.password }}">
+                </div>
+                <div>
+
+                    <button class="btn btn-default" required type="submit" value="Login">
+                </div>
+            </fieldset>
+        </form>
+        </div>
+</body>
+
+</html>
