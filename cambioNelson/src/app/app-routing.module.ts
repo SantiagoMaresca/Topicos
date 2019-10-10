@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-
-//EJEMPLO: importar el modulo
-import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { PublicacionComponent } from './publicacion/publicacion.component';
 
 
 const routes: Routes = [
-  //EJEMPLO: ponerle una path
-  { path: 'registre', component: AppComponent }
+  { path: '', component: HomeComponent },
+  { path: 'publicacion', component: PublicacionComponent }
 ];
 
 @NgModule({
