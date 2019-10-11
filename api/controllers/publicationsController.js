@@ -11,11 +11,32 @@ exports.getAllPublications = function (req, res){
 			);
 }
 
+// Obtiene todos las las publicaciones de un usuario
+exports.getAllPublicationsUser = function (req, res){
+	let param = req.params.email
+	Publications.find(
+		{user: param}, (err, pub)=> {
+			if (err)
+				res.send(err)
+					res.json(pub); // devuelve todas las Personas en JSON		
+				}
+			);
+}
+
+// Obtiene todos los objetos Persona de la base de datos
+exports.getPublicationById = function (req, res){
+	let param = req.params.id
+	Publications.findOne({_id: param}, (err, pub)=> {
+		console.log(pub)
+			if (err)
+				res.send(err)
+					res.json(pub); // devuelve todas las Personas en JSON		
+				}
+			);
+}
+
 // Guarda un objeto Persona en base de datos
 exports.setPublicacion = function(req, res) {
-
-    console.log(req.body);
-		// Creo el objeto Persona
 		Publications.create(
 			{quantity : req.body.quantity,badge: req.body.badge, place: req.body.place, user: req.body.user}, 
 			function(err, publications) {
@@ -30,6 +51,20 @@ exports.setPublicacion = function(req, res) {
 			});
 
 	}
+
+exports.removePublication = function(req, res) {
+	Publications.remove({_id : req.params.id}, function(err, persona) {
+			if (err)
+				res.send(err);
+				// Obtine y devuelve todas las personas tras borrar una de ellas
+				Publications.find(function(err, pub) {
+					if (err)
+						res.send(err)
+					res.json("Deleted!");
+				});
+			});
+		}
+	
 
 /*// Modificamos un objeto Persona de la base de datos
 exports.updatePersona = function(req, res){
