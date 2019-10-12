@@ -22,6 +22,14 @@ module.exports = function(app) {
 		res.sendfile('./angular/index.html'); // Carga única de la vista
 	});
 
-	//-------------------------ofertas-------------------------//
+	app.get('/api/offer', offerController.getAllOffers);
+
+	app.get('/api/offer/:id', offerController.getOfferById);
+
+	app.get('/api/offer/publication', offerController.getAlloffersPublication);
+
+	app.get('/api/offer/user', offerController.getOffersByUser);
+
+	app.post('/api/offer', offerController.setOffer);
 
 };
