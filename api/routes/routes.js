@@ -1,5 +1,6 @@
 var ControllerPub = require ('../controllers/publicationsController');
 var ControllerBadge = require ('../controllers/badgeController');
+var offerController = require ('../controllers/offersController');
 
 module.exports = function(app) {
 
@@ -20,4 +21,7 @@ module.exports = function(app) {
 	app.get('*', function(req, res) {
 		res.sendfile('./angular/index.html'); // Carga única de la vista
 	});
+
+	//-------------------------ofertas-------------------------//
+
 };
