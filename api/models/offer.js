@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-var autoIncrement = require("mongodb-autoincrement");
 
 var Schema = mongoose.Schema;
 
