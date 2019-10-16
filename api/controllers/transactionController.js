@@ -1,5 +1,6 @@
 var Transaction = require('../models/transaction');
 
+// obtiene todas las transacciones
 exports.getAllTransaction = function (req, res){
 	Transaction.find(
 		function(err, transaction) {
@@ -10,10 +11,10 @@ exports.getAllTransaction = function (req, res){
 			);
 }
 
-exports.getAllTransactionUser = function (req, res){
-	let param = req.params.email
+exports.getAllTransactionOffer = function (req, res){
+	let param = req.params.Offerid
 	Transaction.find(
-		{user: param}, (err, pub)=> {
+		{offerID: param}, (err, pub)=> {
 			if (err)
 				res.send(err)
 					res.json(pub);	
@@ -35,7 +36,7 @@ exports.getTransactionById = function (req, res){
 exports.setTransaction = function(req, res) {
     Transaction.create(
 			{quantity : req.body.quantity,badge: req.body.badge, place: req.body.place, user: req.body.user}, 
-			function(err, publications) {
+			function(err, transaccion) {
 				if (err)
 					res.send(err);
 				// Obtine y devuelve todas las personas tras crear una de ellas
@@ -45,7 +46,6 @@ exports.setTransaction = function(req, res) {
 				 	res.json(publications);
 				});
 			});
-
 	}
 
 exports.removeTransaction = function(req, res) {
