@@ -18,18 +18,19 @@ module.exports = function(app) {
 	app.get('/api/badge', ControllerBadge.getAllBadge);
 	//Creo una divisa
 	app.post('/api/badge', ControllerBadge.setPublicacion);
-	app.get('*', function(req, res) {
-		res.sendfile('./angular/index.html'); // Carga única de la vista
-	});
 
 	app.get('/api/offer', offerController.getAllOffers);
 
 	app.get('/api/offer/:id', offerController.getOfferById);
 
-	app.get('/api/offer/publication', offerController.getAlloffersPublication);
+	app.get('/api/offer/publication/:publication', offerController.getAlloffersPublication);
 
-	app.get('/api/offer/user', offerController.getOffersByUser);
+	app.get('/api/offer/user/:email', offerController.getOffersByUser);
 
 	app.post('/api/offer', offerController.setOffer);
+
+	app.get('*', function(req, res) {
+		res.sendfile('./angular/index.html'); // Carga única de la vista
+	});
 
 };
