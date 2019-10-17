@@ -33,17 +33,22 @@ exports.getPublicationById = function (req, res){
 }
 
 exports.setPublicacion = function(req, res) {
+	console.log("llega")
+	console.log(req.body)
 		Publications.create(
 			{quantity : req.body.quantity,badge: req.body.badge, place: req.body.place, user: req.body.user}, 
 			function(err, publications) {
 				if (err)
-					res.send(err);
+					console.log(err);
+					//res.send(err);
+						res.json(publications)
+						//console.log("Publications was created! "+ publications)
 				// Obtine y devuelve todas las personas tras crear una de ellas
-				Publications.find(function(err, publications) {
+			/*	Publications.find(function(err, publications) {
 				 	if (err)
 				 		res.send(err)
 				 	res.json(publications);
-				});
+				});*/
 			});
 
 	}

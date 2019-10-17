@@ -1,5 +1,6 @@
-import {FormGroup,FormBuilder,Validators} from '@angular/forms';
+import {FormGroup,FormBuilder,Validators, FormControl} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from "../controller/service.service";
 
 export interface Divisa {
   value: string;
@@ -16,21 +17,26 @@ export class AltaPublicacionComponent implements OnInit {
   AltaPublicacionForm: FormGroup;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private service: ServiceService) { }
 
   ngOnInit() {
 
     this.AltaPublicacionForm= this.formBuilder.group({
-    
+      user: new FormControl('', [Validators.required]),
+      place: new FormControl('', [Validators.required]),
+      badge: new FormControl('', [Validators.required]),
+      quantity: new FormControl('', [Validators.required])
 
     });
   }
-  PublicarSubmit() {
-    alert(' Nueva publicacion');
+  async PublicarSubmit(frmPub) {
+    console.log(frmPub.value)
+    await this.service.postResource('http://localhost:3000/api/publication', frmPub.value)
+    alert("Publicacion ingresada con exito!")
   }
   divisas: Divisa[] = [
-    {value: 'pesouru-0', viewValue: 'Peso Uruguayo'},
-    {value: 'dolar-1', viewValue: 'Dolar'},
-    {value: 'arg-2', viewValue: 'Peso Argentino'}
+    {value: 'UY', viewValue: 'Peso Uruguayo'},
+    {value: 'US', viewValue: 'Dolar'},
+    {value: 'ARG', viewValue: 'Peso Argentino'}
   ];
 }

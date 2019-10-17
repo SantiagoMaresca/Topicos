@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.component';
 import {PublicacionesComponent}  from './publicaciones/publicaciones.component';
 import { FormsModule } from '@angular/forms';
+import {ServiceService} from './controller/service.service'
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { FormsModule } from '@angular/forms';
   
     
   ],
-  providers: [],
+  providers: [ServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
