@@ -6,15 +6,6 @@
             <div class="form-container">
 
                 <mat-form-field>
-                    <input id="name" matInput placeholder="Nombre de la publicación" />
-                </mat-form-field>
-
-
-                <mat-form-field>
-                    <textarea matInput placeholder="Descripción"></textarea>
-                </mat-form-field>
-
-                <mat-form-field>
                     <mat-label>Divisa</mat-label>
                     <mat-select>
                         <mat-option *ngFor="let divisa of divisas" [value]="divisa.value">
@@ -23,8 +14,19 @@
                     </mat-select>
                 </mat-form-field>
 
+
+                <mat-form-field>
+                    <mat-label>Qué moneda quieres a cambio?</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let divisa of divisas" [value]="divisa.value">
+                            {{divisa.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Precio" value="">
+                    <input matInput placeholder="Monto la publicación" value="">
                 </mat-form-field>
                 <button mat-button type="submit" class="mat-raised-button mat-primary">Publicar</button>
 
