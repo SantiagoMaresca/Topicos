@@ -1,26 +1,34 @@
 <div class="medium-list">
     <div class="list-viewer-wrapper">
-        <div class="list-header-title">Register</div>
+        <div class="list-header-title">Nueva publicación</div>
 
-        <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+        <form [formGroup]="AltaPublicacionForm" (ngSubmit)="PublicarSubmit()" novalidate>
             <div class="form-container">
+
                 <mat-form-field>
-                    <input id="name" matInput formControlName="name" [(ngModel)]="user.name" placeholder="Enter your name" />
+                    <input id="name" matInput placeholder="Nombre de la publicación" />
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <textarea matInput placeholder="Descripción"></textarea>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Enter your email" />
+                    <mat-label>Divisa</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let divisa of divisas" [value]="divisa.value">
+                            {{divisa.viewValue}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
 
-                <mat-form-field>
-                    <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Enter your password" [type]="hide ? 'password':'text'" />
-                    <mat-icon matSuffix (click)="hide = !hide">
-                        {{hide ? 'visibility' : 'visibility_off'}}
-                    </mat-icon>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Precio" value="">
                 </mat-form-field>
+                <button mat-button type="submit" class="mat-raised-button mat-primary">Publicar</button>
 
-                <button mat-button type="submit" class="mat-raised-button mat-primary" [disabled]="!registerForm.valid">Register</button>
-                <button mat-button routerLink="/login" class="divider">Login</button>
+                <button mat-button routerLink="/home" class="divider">Volver</button>
             </div>
         </form>
     </div>
