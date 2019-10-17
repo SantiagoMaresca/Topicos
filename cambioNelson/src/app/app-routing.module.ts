@@ -10,10 +10,12 @@ import { OfertaComponent } from './oferta/oferta.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'publicaciones', component: AltaPublicacionComponent },
+  { path: 'crearpublicacion', component: AltaPublicacionComponent },
   { path: 'publicacion', component: PublicacionComponent },
+  { path: 'publicaciones', component: PublicacionesComponent },
   { path: 'oferta', component: OfertaComponent },
   { path: 'ofertas', component: OfertasComponent },
+
 
 ];
 

@@ -10,9 +10,6 @@
                 </mat-form-field>
 
 
-                <mat-form-field>
-                    <textarea matInput placeholder="Descripción"></textarea>
-                </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Divisa</mat-label>
@@ -22,6 +19,17 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Qué moneda quieres a cambio?</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let divisa of divisas" [value]="divisa.value">
+                            {{divisa.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
 
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Precio" value="">
