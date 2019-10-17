@@ -1,2 +1,28 @@
-<mat-card> Publicacion!
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Crear publicación</mat-card-title>
+    </mat-card-header>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Monto de Publicación" value="1000" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+            <select matNativeControl placeholder="Moneda" required>
+                <option value="UYU">UYU</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="ARG">ARG</option>
+            </select>
+        </mat-form-field>
+        <p>Quieres comprar o vender?</p>>
+        <mat-form-field class="example-full-width">
+            <select matNativeControl placeholder="Elige acción" required>
+                <option value="Comprar">Comprar</option>
+                <option value="Vender">Vender</option>
+            </select>
+        </mat-form-field>
+    </form>
+    <a mat-button href="">Crear publicación</a>
 </mat-card>

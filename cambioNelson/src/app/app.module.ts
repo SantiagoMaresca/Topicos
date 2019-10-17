@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MatInputModule } from '@angular/material/input';
     PublicacionComponent,
     OfertaComponent,
     OfertasComponent,
-    HomeComponent
+    HomeComponent,
+    PublicacionesComponent
   ],
   imports: [
     BrowserModule,
