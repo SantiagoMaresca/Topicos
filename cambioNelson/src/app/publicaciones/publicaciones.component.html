@@ -1,13 +1,13 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Compra de dolares</mat-card-title>
-    <mat-card-subtitle>User 1, Montevideo</mat-card-subtitle>
-    <!-- <mat-card-subtitle>{{user}}, {{place}}</mat-card-subtitle> -->
-  </mat-card-header>
-  <img mat-card-image src="https://www.brandcrowd.com/gallery/brands/pictures/picture15270839486609.png">
-  <p>11 feb</p>
-  <!-- <p>{{date}}</p> -->
-  <p>Vendo 200 USD!</p>
-  <!-- <p>Vendo {{quantity}} {{badge}}!</p> -->
-</mat-card>
+<div class="tarjeta-pub">
+  <mat-card class="example-card" *ngFor="let item of items">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Compra de {{item.badge}}</mat-card-title>
+      <mat-card-subtitle>{{item.user}}, {{item.place}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://www.brandcrowd.com/gallery/brands/pictures/picture15270839486609.png">
+    <p>{{item.date}}</p>
+    <p>Vendo {{item.quantity}} {{item.badge}}!</p>
+    <a mat-button href="/oferta">Ofertar</a>
+  </mat-card>
+</div>
