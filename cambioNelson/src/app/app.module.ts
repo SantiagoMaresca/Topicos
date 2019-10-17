@@ -13,6 +13,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MatCardModule } from '@angular/material/card';
     RegisterComponent,
     PublicacionComponent,
     OfertasComponent,
-    HomeComponent
+    HomeComponent,
+    AltaPublicacionComponent
   ],
   imports: [
     BrowserModule,
