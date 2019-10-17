@@ -14,9 +14,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.component';
 import { MatInputModule } from '@angular/material/input';
 import { PublicacionesComponent } from './publicaciones/publicaciones.component';
-
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { PublicacionesComponent } from './publicaciones/publicaciones.component'
     OfertaComponent,
     OfertasComponent,
     HomeComponent,
+    AltaPublicacionComponent,
     PublicacionesComponent
   ],
   imports: [
