@@ -5,10 +5,10 @@ import { HomeComponent } from './home/home.component';
 import { PublicacionComponent } from './publicacion/publicacion.component';
 import { OfertasComponent } from './ofertas/ofertas.component';
 
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'publicacion', component: PublicacionComponent },
+  { path: 'oferta', component: OfertaComponent }
   { path: 'ofertas', component: OfertasComponent }
 ];
 
