@@ -2,29 +2,29 @@
     <div class="list-viewer-wrapper">
         <div class="list-header-title">Nueva publicación</div>
 
-        <form [formGroup]="AltaPublicacionForm" (ngSubmit)="PublicarSubmit()" novalidate>
+        <form [formGroup]="AltaPublicacionForm" #frmPub="ngForm" (ngSubmit)="PublicarSubmit(frmPub)" novalidate>
             <div class="form-container">
 
                 <mat-form-field>
-                    <input id="name" matInput placeholder="Nombre de la publicación" />
+                    <input id="name" matInput placeholder="Usuario" formControlName="user" />
                 </mat-form-field>
 
 
                 <mat-form-field>
-                    <textarea matInput placeholder="Descripción"></textarea>
+                    <input matInput placeholder="Lugar de intercambio" formControlName="place"/>
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Divisa</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let divisa of divisas" [value]="divisa.value">
+                    <mat-select formControlName="badge">
+                        <mat-option  *ngFor="let divisa of divisas" [value]="divisa.value" >
                             {{divisa.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Precio" value="">
+                    <input matInput placeholder="Precio" value="" formControlName="quantity"/>
                 </mat-form-field>
                 <button mat-button type="submit" class="mat-raised-button mat-primary">Publicar</button>
 
