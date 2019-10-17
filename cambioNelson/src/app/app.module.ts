@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { PublicacionComponent } from './publicacion/publicacion.component';
+import { OfertasComponent } from './ofertas/ofertas.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OfertaComponent } from './oferta/oferta.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,8 +22,9 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     RegisterComponent,
     PublicacionComponent,
-    HomeComponent,
     OfertaComponent
+    OfertasComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatCardModule,
     MatInputModule
+    AgGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]
