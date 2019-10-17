@@ -17,6 +17,11 @@ export class PublicacionesComponent implements OnInit {
     let result = await this.service.getResourceAsync('http://localhost:3000/api/publication', undefined);
     console.log(result);
     this.items = result
+  }
 
+  sendToOffer(index) {
+    console.log(this.items[index]);
+    //this.service.setLastPublicacion(this.items[index]);
+    window.localStorage.setItem("publicacion", JSON.stringify(this.items[index]));
   }
 }

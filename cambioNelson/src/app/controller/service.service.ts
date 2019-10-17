@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 
 export class ServiceService {
+  private lastPublicacion;
+
 
   constructor() { }
 
@@ -53,6 +55,12 @@ export class ServiceService {
       method: "PUT",
       body: JSON.stringify(json)
     })
+  }
 
+  getLastPublicacion() {
+    return this.lastPublicacion;
+  }
+  setLastPublicacion(publicacion) {
+    this.lastPublicacion = publicacion;
   }
 }
