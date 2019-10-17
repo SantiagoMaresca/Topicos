@@ -33,17 +33,18 @@ exports.getTransactionById = function (req, res){
 			);
 }
 
+
 exports.setTransaction = function(req, res) {
     Transaction.create(
-			{quantity : req.body.quantity,badge: req.body.badge, place: req.body.place, user: req.body.user}, 
+			{offerID : req.body.quantity, publicationID: req.body.place}, 
 			function(err, transaccion) {
 				if (err)
 					res.send(err);
 				// Obtine y devuelve todas las personas tras crear una de ellas
-				Transaction.find(function(err, publications) {
+				Transaction.find(function(err, transaccion) {
 				 	if (err)
 				 		res.send(err)
-				 	res.json(publications);
+				 	res.json(transaccion);
 				});
 			});
 	}
@@ -53,7 +54,7 @@ exports.removeTransaction = function(req, res) {
 			if (err)
 				res.send(err);
 				// Obtine y devuelve todas las personas tras borrar una de ellas
-				Transaction.find(function(err, pub) {
+				Transaction.find(function(err, tra) {
 					if (err)
 						res.send(err)
 					res.json("Deleted!");

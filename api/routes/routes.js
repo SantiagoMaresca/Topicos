@@ -1,6 +1,8 @@
 var ControllerPub = require ('../controllers/publicationsController');
 var ControllerBadge = require ('../controllers/badgeController');
 var offerController = require ('../controllers/offersController');
+var transactionController = require ('../controllers/transactionController');
+var userController = require('../controllers/userController');
 
 module.exports = function(app) {
 
@@ -32,4 +34,23 @@ module.exports = function(app) {
 
 	app.post('/api/offer', offerController.setOffer);
 
+	
+	app.get('/api/transaction', transactionController.getAllTransaction);
+    
+	app.get('/api/transaction/:id', transactionController.getTransactionById);
+	
+	app.get('/api/offerTransaction/:OfferId', transactionController.getAllTransactionOffer);
+	
+	app.post('/api/transaction', transactionController.setTransaction);
+	
+	app.delete('/api/transaction/:id', transactionController.removeTransaction);
+
+
+	app.get('/api/user', userController.getAllUser);
+    
+	app.get('/api/user/:id', userController.getUser);
+	
+	app.post('/api/user', userController.setUser);
+	
+	app.delete('/api/user/:id', userController.removeUser);
 };
