@@ -22,7 +22,7 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     RegisterComponent,
     PublicacionComponent,
-    OfertaComponent
+    OfertaComponent,
     OfertasComponent,
     HomeComponent
   ],
@@ -33,7 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
     AgGridModule
   ],
   providers: [],
