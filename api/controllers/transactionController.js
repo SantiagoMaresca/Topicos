@@ -22,9 +22,10 @@ exports.getAllTransactionOffer = function (req, res){
 			);
 }
 
+
 exports.getTransactionById = function (req, res){
 	let param = req.params.id
-	Transaction.findOne({_id: param}, (err, pub)=> {
+	Transaction.find({_id: param}, (err, pub)=> {
 		console.log(pub)
 			if (err)
 				res.send(err)
@@ -33,10 +34,32 @@ exports.getTransactionById = function (req, res){
 			);
 }
 
+exports.getTransactionUser = async function (req, res){
+	let param = req.params.userId
+	console.log(param)
+	try {
+		let result1 = await Transaction.find({userOf: param}, (err, pub)=> {
+			console.log(pub)
+				if (err)
+						return pub	
+					}
+				);
+		let result2 = await Transaction.find({userPub: param, userPub: param}, (err, pub)=> {
+			console.log(pub)
+				if (err)
+						return pub; 	
+					}
+				);
+		res.json(result1.concat(result2))
+	} catch (error) {
+			res.send(error)
+	}
+}
+
 
 exports.setTransaction = function(req, res) {
     Transaction.create(
-			{offerID : req.body.quantity, publicationID: req.body.place}, 
+			{offerID : req.body.offerID, publicationID: req.body.publicationID, userOf: req.body.userOf, userPub: req.body.userPub  }, 
 			function(err, transaccion) {
 				if (err)
 					res.send(err);

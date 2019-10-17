@@ -1,4 +1,4 @@
-var User = require('../models/User');
+var User = require('../models/users');
 
 // obtiene todas las transacciones
 exports.getAllUser = function (req, res){
@@ -13,7 +13,7 @@ exports.getAllUser = function (req, res){
 
 exports.getUserById = function (req, res){
 	let param = req.params.id
-	User.findOne({_id: param}, (err, use)=> {
+	User.findOne({email: param}, (err, use)=> {
 		console.log(use)
 			if (err)
 				res.send(err)
@@ -38,7 +38,7 @@ exports.setUser = function(req, res) {
 	}
 
 exports.removeUser = function(req, res) {
-	User.remove({_id : req.params.id}, function(err, user) {
+	User.remove({email : req.params.id}, function(err, user) {
 			if (err)
 				res.send(err);
 				// Obtine y devuelve todas las personas tras borrar una de ellas
