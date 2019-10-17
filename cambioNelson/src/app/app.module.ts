@@ -31,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     AltaPublicacionComponent,
     PublicacionesComponent,
     OfertasComponent,
-    OfertaComponent
+    OfertaComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+  
     
   ],
   providers: [],
