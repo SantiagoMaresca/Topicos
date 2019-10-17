@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const DATABASE_URL = 'mongodb://localhost:27017/cambioNelson'
+const DATABASE_URL = 'mongodb+srv://cambioNelson:0Jp3JoV1mBwnEj7U@cluster0-ldeej.mongodb.net/cambioNelson?retryWrites=true&w=majority'
 
 
 module.exports =() =>{

@@ -8,21 +8,26 @@ import { OfertasComponent } from './ofertas/ofertas.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { OfertaComponent } from './oferta/oferta.component';
 import { AgGridModule } from 'ag-grid-angular';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.component';
+import { MatInputModule } from '@angular/material/input';
+import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     PublicacionComponent,
+    OfertaComponent,
     OfertasComponent,
     HomeComponent,
-    AltaPublicacionComponent
+    AltaPublicacionComponent,
+    PublicacionesComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,7 @@ import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.co
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
+    MatInputModule,
     AgGridModule
   ],
   providers: [],
