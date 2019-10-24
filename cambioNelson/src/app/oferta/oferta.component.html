@@ -1,7 +1,11 @@
-<mat-card>
+<mat-card class="example-card">
   <p>Ofertar a la publicación de {{publicacion.user}}</p>
   <p> {{publicacion.quantity}} {{publicacion.badge}}</p>
   <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Mi usuario" value="ejemplo@ejemplo.com" required>
+    </mat-form-field>
+    <br>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Monto de oferta" value="1000" required>
     </mat-form-field>
@@ -10,8 +14,9 @@
       <select matNativeControl placeholder="Moneda" required>
         <option value="UYU">UYU</option>
         <option value="USD">USD</option>
+        <option value="ARS">ARS</option>
+        <option value="BRL">BRL</option>
         <option value="EUR">EUR</option>
-        <option value="ARG">ARG</option>
       </select>
     </mat-form-field>
   </form>
