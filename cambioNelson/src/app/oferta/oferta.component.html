@@ -1,17 +1,17 @@
 <mat-card class="example-card">
-  <p>Ofertar a la publicación de {{publicacion.user}}</p>
-  <p> {{publicacion.quantity}} {{publicacion.badge}}</p>
-  <form class="example-form">
+  <form [formGroup]="ofertaForm" #frmPub="ngForm" (ngSubmit)="sendOffer(frmPub)" class="example-form" novalidate>
+    <p>Ofertar a la publicación de {{publicacion.user}}</p>
+    <p> {{publicacion.quantity}} {{publicacion.badge}}</p>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Mi usuario" value="ejemplo@ejemplo.com" required>
+      <input matInput placeholder="Mi usuario" value="ejemplo@ejemplo.com" formControlName="user" required>
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Monto de oferta" value="1000" required>
+      <input matInput placeholder="Monto de oferta" value="1000" formControlName="quantity" required>
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
-      <select matNativeControl placeholder="Moneda" required>
+      <select matNativeControl placeholder="Moneda" formControlName="badge" required>
         <option value="UYU">UYU</option>
         <option value="USD">USD</option>
         <option value="ARS">ARS</option>
@@ -19,6 +19,7 @@
         <option value="EUR">EUR</option>
       </select>
     </mat-form-field>
+    <br>
+    <button mat-button type="submit">Ofertar</button>
   </form>
-  <a mat-button (click)="sendOffer(i)">Ofertar</a>
 </mat-card>
