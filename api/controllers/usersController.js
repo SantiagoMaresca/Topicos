@@ -38,9 +38,6 @@ exports.setUser = function (req, res) {
 }
 
 exports.updateScoreUser = function (req, res) {
-	console.log(req.params);
-	console.log(req.body);
-
 	User.updateOne({ email: req.params.email}, {score: req.body.score }, function (err, user) {
 		if(err)
 			res.send(err);

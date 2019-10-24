@@ -35,6 +35,8 @@ module.exports = function(app) {
 
 	app.post('/api/offer', offerController.setOffer);
 
+	app.delete('/api/offer/:id', offerController.removeOffer);
+
 	/** ########## TRANSACCIONES ################################################## */
 	app.get('/api/transaction', transactionController.getAllTransaction);
     
@@ -51,11 +53,11 @@ module.exports = function(app) {
 	
 	/** ########## USUARIOS ################################################## */
 	app.get('/api/user', userController.getAllUser);
-    
+    // Obtiene un usuario por email
 	app.get('/api/user/:id', userController.getUserById);
-	//
+	// Agrega un usuario
 	app.post('/api/user', userController.setUser);
-
+	// Actualiza score de un usuario
 	app.put('/api/user/:email', userController.updateScoreUser);
 	//
 	app.delete('/api/user/:id', userController.removeUser);
