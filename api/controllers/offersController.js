@@ -48,7 +48,7 @@ exports.setOffer = function(req, res) {
 		Offer.create(
             {
                 date: req.body.date, 
-                quantity : req.body.quantity,
+				quantity: req.body.quantity,
                 badge: req.body.badge, 
                 publication: req.body.publication,
                 user: req.body.user

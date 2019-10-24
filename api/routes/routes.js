@@ -55,6 +55,8 @@ module.exports = function(app) {
 	app.get('/api/user/:id', userController.getUserById);
 	//
 	app.post('/api/user', userController.setUser);
+
+	app.put('/api/user/:email', userController.updateScoreUser);
 	//
 	app.delete('/api/user/:id', userController.removeUser);
 
