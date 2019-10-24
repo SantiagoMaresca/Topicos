@@ -25,16 +25,17 @@ module.exports = function(app) {
 	app.post('/api/badge', ControllerBadge.setPublicacion);
 
 	/** ########## OFERTAS ################################################## */
+	//obtener todas las ofertas
 	app.get('/api/offer', offerController.getAllOffers);
-
+	// obetener una oferta por id
 	app.get('/api/offer/:id', offerController.getOfferById);
-
+	//obetner todas las ofertas de una publicacion
 	app.get('/api/offer/publication/:publication', offerController.getAlloffersPublication);
-
+	//obtener todas las ofertas de un usuario
 	app.get('/api/offer/user/:email', offerController.getOffersByUser);
-
+	//crear oferta
 	app.post('/api/offer', offerController.setOffer);
-
+	// eliminar oferta por su id
 	app.delete('/api/offer/:id', offerController.removeOffer);
 
 	/** ########## TRANSACCIONES ################################################## */
@@ -59,7 +60,7 @@ module.exports = function(app) {
 	app.post('/api/user', userController.setUser);
 	// Actualiza score de un usuario
 	app.put('/api/user/:email', userController.updateScoreUser);
-	//
+	// Eliminar usuario por email
 	app.delete('/api/user/:id', userController.removeUser);
 
 	app.get('*', function(req, res) {
