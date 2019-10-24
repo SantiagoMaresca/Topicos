@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router'; 
 import { HomeComponent } from './home/home.component';
 import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.component';
