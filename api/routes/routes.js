@@ -3,6 +3,7 @@ var ControllerBadge = require ('../controllers/badgeController');
 var offerController = require ('../controllers/offersController');
 var transactionController = require ('../controllers/transactionController');
 var userController = require('../controllers/usersController');
+var brouController = require('../controllers/brouController')
 
 module.exports = function(app) {
 
@@ -58,8 +59,13 @@ module.exports = function(app) {
 	//
 	app.delete('/api/user/:id', userController.removeUser);
 
+
+
+	/**############### COTIZACIONES ########################################### */
+
+	app.post('/api/brou', brouController.getDiff);
+
 	app.get('*', function(req, res) {
 		res.sendfile('./angular/index.html'); // Carga única de la vista
 	});
-
 };
