@@ -7,6 +7,8 @@ import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.co
 import { PublicacionComponent } from './publicacion/publicacion.component';
 import { OfertasComponent } from './ofertas/ofertas.component';
 import { OfertaComponent } from './oferta/oferta.component';
+import { RegisterComponent } from "./register/register.component" ;
+import { LoginComponent } from "./login/login/login.component" ;
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'publicaciones', component: PublicacionesComponent },
   { path: 'oferta', component: OfertaComponent },
   { path: 'ofertas', component: OfertasComponent },
+  { path: 'registro', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
 
 
 ];

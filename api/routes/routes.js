@@ -62,6 +62,8 @@ module.exports = function(app) {
 	app.put('/api/user/:email', userController.updateScoreUser);
 	// Eliminar usuario por email
 	app.delete('/api/user/:id', userController.removeUser);
+	// Login 
+	app.post('/api/login', userController.loginUser);
 
 	app.get('*', function(req, res) {
 		res.sendfile('./angular/index.html'); // Carga única de la vista
