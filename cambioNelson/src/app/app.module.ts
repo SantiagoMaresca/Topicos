@@ -21,7 +21,8 @@ import { MatCardModule } from '@angular/material/card';
 import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.component';
 import {PublicacionesComponent}  from './publicaciones/publicaciones.component';
 import { FormsModule } from '@angular/forms';
-import {ServiceService} from './controller/service.service'
+import {ServiceService} from './controller/service.service';
+import { LoginComponent } from './login/login/login.component'
 
 @NgModule({
   declarations: [
@@ -33,6 +34,8 @@ import {ServiceService} from './controller/service.service'
     PublicacionesComponent,
     OfertasComponent,
     OfertaComponent,
+    RegisterComponent,
+    LoginComponent
   
   ],
   imports: [
