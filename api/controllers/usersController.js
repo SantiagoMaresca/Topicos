@@ -37,8 +37,18 @@ exports.setUser = function (req, res) {
 		});
 }
 
-exports.updateScoreUser = function (req, res) {
-	User.updateOne({ email: req.params.email}, {score: req.body.score }, function (err, user) {
+exports.updateScoreUser = async function (req, res) {
+	 const user =  await User.findOne({ email: req.params.email }, (err, use) => {
+		console.log(use)
+		if (err)
+			res.send(err)
+		res.json(use);
+	}
+	);
+	 user.lscore.push(req.body.lscore);
+	 console.log(user.lscore)
+	 
+	User.updateOne({ email: req.params.email}, {lscore: user.lscore }, function (err, user) {
 		if(err)
 			res.send(err);
 			User.findOne({ email: req.params.email }, (err, use) => {

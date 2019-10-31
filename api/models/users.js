@@ -8,7 +8,8 @@ var UserSchema = new Schema({
     password: { type: String, required: true },
     name: { type: String},
     phone: { type: String},
-    score: { type: Number, required: true, default: 0}
+    score: { type: Number, required: true, default: 0},
+    lscore: [{ type: Number, required: true, default: []}]
 });
 
 
