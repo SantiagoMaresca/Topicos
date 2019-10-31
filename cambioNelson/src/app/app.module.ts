@@ -22,9 +22,11 @@ import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.co
 import {PublicacionesComponent}  from './publicaciones/publicaciones.component';
 import { FormsModule } from '@angular/forms';
 import {ServiceService} from './controller/service.service';
+
 import { BusquedaPublicacionesComponent } from './busqueda-publicaciones/busqueda-publicaciones.component'
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FilterPipe } from './publicaciones/filter.pipe';
+import { LoginComponent } from './login/login/login.component'
 
 @NgModule({
   declarations: [
@@ -36,8 +38,13 @@ import { FilterPipe } from './publicaciones/filter.pipe';
     PublicacionesComponent,
     OfertasComponent,
     OfertaComponent,
+    busqueda-publicaciones
     BusquedaPublicacionesComponent,
     FilterPipe
+
+    RegisterComponent,
+    LoginComponent
+  
   ],
   imports: [
     BrowserModule,
