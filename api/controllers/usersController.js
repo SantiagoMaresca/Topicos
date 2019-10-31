@@ -89,8 +89,13 @@ exports.loginUser = (req, res,next)=>{
     })
 }
 
-exports.updateScoreUser = function (req, res) {
-	User.updateOne({ email: req.params.email}, {score: req.body.score }, function (err, user) {
+exports.updateScoreUser = async function (req, res) {
+	const user2 =  await User.findOne({ email: req.params.email })
+	listaScore = user2.lscore
+	 
+	listaScore.push(req.body.lscore);
+	 
+	User.updateOne({ email: req.params.email}, {lscore: listaScore }, function (err, user) {
 		if(err)
 			res.send(err);
 			User.findOne({ email: req.params.email }, (err, use) => {
