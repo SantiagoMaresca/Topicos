@@ -21,7 +21,10 @@ import { MatCardModule } from '@angular/material/card';
 import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.component';
 import {PublicacionesComponent}  from './publicaciones/publicaciones.component';
 import { FormsModule } from '@angular/forms';
-import {ServiceService} from './controller/service.service'
+import {ServiceService} from './controller/service.service';
+import { BusquedaPublicacionesComponent } from './busqueda-publicaciones/busqueda-publicaciones.component'
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FilterPipe } from './publicaciones/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import {ServiceService} from './controller/service.service'
     PublicacionesComponent,
     OfertasComponent,
     OfertaComponent,
-  
+    BusquedaPublicacionesComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -50,8 +54,8 @@ import {ServiceService} from './controller/service.service'
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-  
-    
+  MatAutocompleteModule
+ 
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]
