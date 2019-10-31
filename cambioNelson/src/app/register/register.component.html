@@ -1,3 +1,44 @@
-<p>
-  register works!
-</p>
+<div class="container">
+  <mat-toolbar>Sing up</mat-toolbar>
+  <form name= "frmLogin" [formGroup]="user" #frmLogin="ngForm" class="example-form" (ngSubmit)="submitRegistre(frmLogin)">
+    <mat-error *ngIf="userExsist">
+      The user already exist.
+   </mat-error>
+    <!--Email-->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email"
+             [errorStateMatcher]="matcher"  formControlName="email">
+      <mat-error *ngIf="user.get('email').hasError('email') && !user.get('email').hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="user.get('email').hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+        <!--Name-->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Name"
+                 [errorStateMatcher]="matcher"  formControlName="name">
+      <mat-error *ngIf="user.get('name').hasError('required')">
+            Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+        <!--Phone-->
+    <mat-form-field class="example-full-width">
+          <input matInput placeholder="Phone"
+                     [errorStateMatcher]="matcher"  formControlName="phone">
+    </mat-form-field>
+            <!--Password-->
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password"
+                         [errorStateMatcher]="matcher"  formControlName="password" type="password">
+        <mat-error *ngIf="user.get('password').hasError('required')">
+                    Password is <strong>required</strong>
+        </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Registre</button>
+  <a mat-raised-button routerLink="../login">Ya tienes usuario? Haz click aqui!</a>
+  </form>
+</div>
+

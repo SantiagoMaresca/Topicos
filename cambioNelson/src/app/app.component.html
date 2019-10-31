@@ -1,9 +1,11 @@
-<mat-toolbar color='primary'>
+<router-outlet>
+<mat-toolbar color='primary' *ngIf="service.visible">
     <span>Cambio nelson </span>
     <a mat-button href="">Inicio</a>
     <a mat-button href="crearpublicacion">Publicar</a>
     <a mat-button href="publicaciones">Ver publicaciones</a>
     <a mat-button href="ofertas">Ver Ofertas</a>
+    <button mat-raised-button (click)="logOut()">Log out</button>
 </mat-toolbar>
-<router-outlet>
+
 </router-outlet>
