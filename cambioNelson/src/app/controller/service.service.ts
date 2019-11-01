@@ -53,6 +53,7 @@ export class ServiceService {
   async putResourceAsync(endpoint, json, token) {
     return fetch(endpoint, {
       method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(json)
     })
   }

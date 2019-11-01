@@ -2,10 +2,11 @@
   <mat-card class="example-card" *ngFor="let item of items; let i = index">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{item.date}}</mat-card-title>
-      <mat-card-subtitle>{{item.publicationID}}</mat-card-subtitle>
+      <mat-card-title>Publicación {{item.publicationID}}</mat-card-title>
+      <mat-card-subtitle>Fecha {{item.date}}</mat-card-subtitle>
     </mat-card-header>
-    <p>{{item.offerID}}</p>
-    <a mat-button (click)="sendToOffer(i)">Calificar</a>
+    <p>Ofertante {{item.userOf}}</p>
+    <p>Intercambio por {{item.quantity}} {{item.badge}}</p>
+    <a mat-button (click)="qualify(i)">Calificar</a>
   </mat-card>
 </div>
