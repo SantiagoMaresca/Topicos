@@ -8,6 +8,7 @@ import { OfertasComponent } from './ofertas/ofertas.component';
 import { OfertaComponent } from './oferta/oferta.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule} from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,10 +39,8 @@ import { LoginComponent } from './login/login/login.component'
     PublicacionesComponent,
     OfertasComponent,
     OfertaComponent,
-    busqueda-publicaciones
     BusquedaPublicacionesComponent,
-    FilterPipe
-
+    FilterPipe,
     RegisterComponent,
     LoginComponent
   
@@ -61,7 +60,8 @@ import { LoginComponent } from './login/login/login.component'
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  RouterModule
  
   ],
   providers: [ServiceService],
