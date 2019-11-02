@@ -36,6 +36,8 @@ module.exports = function(app) {
 	app.get('/api/offer/user/:email', offerController.getOffersByUser);
 	//crear oferta
 	app.post('/api/offer', offerController.setOffer);
+	//actualiza si la oferta fue aceptada
+	app.put('/api/offer/:id', offerController.updateIsAccepted);
 	// eliminar oferta por su id
 	app.delete('/api/offer/:id', offerController.removeOffer);
 

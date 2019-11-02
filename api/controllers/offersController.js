@@ -66,6 +66,22 @@ exports.setOffer = function (req, res) {
 
 }
 
+//actualiza isAccepted( si la oferta es aceptada )
+exports.updateIsAccepted = async function (req, res) {
+	console.log(req.body)
+	Offer.updateOne({ _id: req.params.id }, { isAccepted: true }, function (err, user) {
+		if(err)
+			res.send(err);
+			Offer.findOne({ _id: req.params.id }, (err, use) => {
+				console.log(use)
+				if (err)
+					res.send(err)
+				res.json(use);
+			}
+			);
+	})
+}
+
 exports.removeOffer = function (req, res) {
 	console.log(req.params);
 	Offer.deleteOne({ "_id": req.params.id }, function (err, user) {
