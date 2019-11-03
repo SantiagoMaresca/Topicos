@@ -6,8 +6,8 @@
       <mat-card-subtitle>{{item.user}}, {{item.place}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="https://www.brandcrowd.com/gallery/brands/pictures/picture15270839486609.png">
-    <p>{{item.date}}</p>
-    <p>Vendo {{item.quantity}} {{item.badge}}!</p>
-    <a mat-button (click)="sendToOffer(i)" href="/oferta">Ofertar</a>
+    <p>{{item.date.substring(0, 10)}}</p>
+    <p class="detail"> <strong> Vendo {{item.quantity}} {{item.badge}}! </strong></p>
+    <a mat-button class="mat-raised-button mat-primary" (click)="sendToOffer(i)" href="/oferta">Ofertar</a>
   </mat-card>
 </div>

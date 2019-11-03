@@ -10,13 +10,17 @@ import { ServiceService } from '../app/controller/service.service';
 export class AppComponent implements OnInit {
 
   ngOnInit(){
+    if(!window.localStorage.ACCESS_TOKEN){
+      this.service.hide();
+    }else{
+      this.service.show()
+    }
   }
   
 
   constructor(private router: Router, private service: ServiceService){}
 
   title = 'cambioNelson';
-  showToolbar = false;
 
   logOut(){
     window.localStorage.clear();

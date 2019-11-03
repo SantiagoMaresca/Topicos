@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../controller/service.service';
+import {Router  } from "@angular/router";
 
 @Component({
   selector: 'app-publicaciones',
@@ -8,9 +9,12 @@ import { ServiceService } from '../controller/service.service';
 })
 export class PublicacionesComponent implements OnInit {
   private items;
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService, private router: Router) { }
 
   ngOnInit() {
+    if(!window.localStorage.ACCESS_TOKEN){
+      this.router.navigate(["login"])
+    }
     this.getPublicaciones();
   }
   async getPublicaciones() {
