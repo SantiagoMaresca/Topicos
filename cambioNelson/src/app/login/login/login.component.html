@@ -9,7 +9,7 @@
     <!--Email-->
     <mat-form-field class="example-full-width">
         <mat-icon matSuffix svgIcon="email">sentiment_very_satisfied</mat-icon>
-      <input matInput placeholder="Email"
+      <input matInput placeholder="Correo"
              [errorStateMatcher]="matcher"  formControlName="email">
       <mat-error *ngIf="user.get('email').hasError('email') && !user.get('email').hasError('required')">
         Please enter a valid email address
@@ -21,7 +21,7 @@
             <!--Password-->
     <mat-form-field class="example-full-width">
         <mat-icon matSuffix svgIcon="key">sentiment_very_satisfied</mat-icon>
-        <input matInput placeholder="Password"
+        <input matInput placeholder="Contraseña"
                          [errorStateMatcher]="matcher"  formControlName="password" type="password">
         <mat-error *ngIf="user.get('password').hasError('required')">
                     Password is <strong>required</strong>
