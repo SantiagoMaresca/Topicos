@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from "../controller/service.service";
 import { Router } from "@angular/router";
 
+
 export interface Divisa {
   value: string;
   viewValue: string;
@@ -33,8 +34,10 @@ export class AltaPublicacionComponent implements OnInit {
   async PublicarSubmit(frmPub) {
     console.log(frmPub.value)
     await this.service.postResource('http://localhost:3000/api/publication', frmPub.value)
+    await this.service.sendMail("cambioNelson","has creado una publicacion","cambionelsonnon-reply@outlook.com",false)
     alert("Publicacion ingresada con exito!")
     this.router.navigate(["/publicaciones"])
+
   }
   divisas: Divisa[] = [
     { value: 'UYU', viewValue: 'Peso Uruguayo' },
@@ -43,4 +46,6 @@ export class AltaPublicacionComponent implements OnInit {
     { value: 'BRL', viewValue: 'Real Brasilero' },
     { value: 'EUR', viewValue: 'Euro' }
   ];
+
 }
+  
