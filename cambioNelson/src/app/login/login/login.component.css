@@ -1,0 +1,39 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .container{
+      min-width: 190px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+  }
+
+  .mat-toolbar-single-row{
+    justify-content: center !important;
+  }
+
+button{
+    margin-right: 29%;
+  }
+
+  mat-toolbar{
+    background-color: #3f51b5;
+    color: white;
+  }
+
+  form{
+    box-shadow: 0px 0px 69px -13px rgba(133,130,133,0.43);
+    padding: 10px;
+  }
+
+  .mat-icon{
+    padding-right: 10px
+  }

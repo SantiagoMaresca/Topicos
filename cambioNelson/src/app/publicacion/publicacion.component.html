@@ -1,30 +1,13 @@
-<mat-card>
+<mat-card class="example-card">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Crear publicación</mat-card-title>
+        <mat-card-title>Compra de dolares</mat-card-title>
+        <mat-card-subtitle>User 1, Montevideo</mat-card-subtitle>
+        <!-- <mat-card-subtitle>{{user}}, {{place}}</mat-card-subtitle> -->
     </mat-card-header>
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Monto de Publicación" value="1000" required>
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width">
-            <select matNativeControl placeholder="Moneda" required>
-                <option value="UYU">UYU</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="ARG">ARG</option>
-            </select>
-        </mat-form-field>
-        <p>Que moneda quieres a cambio?</p>>
-        <mat-form-field class="example-full-width">
-            <select matNativeControl placeholder="Moneda" required>
-                <option value="UYU">UYU</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="ARG">ARG</option>
-            </select>
-        </mat-form-field>
-    </form>
-    <a mat-button href="">Crear publicación</a>
+    <img mat-card-image src="https://www.brandcrowd.com/gallery/brands/pictures/picture15270839486609.png">
+    <p>11 feb</p>
+    <!-- <p>{{date}}</p> -->
+    <p>Vendo 200 USD!</p>
+    <!-- <p>Vendo {{quantity}} {{badge}}!</p> -->
 </mat-card>

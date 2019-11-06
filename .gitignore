@@ -1,4 +1,4 @@
-
-cambioNelson/node_modules
-cambioNelson/node_modules/*
-
+\node_modules
+api/package-lock.json
+api/package-lock.json
+cambionelson/node_modules

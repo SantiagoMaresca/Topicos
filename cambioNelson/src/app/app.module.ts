@@ -8,6 +8,7 @@ import { OfertasComponent } from './ofertas/ofertas.component';
 import { OfertaComponent } from './oferta/oferta.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule} from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +22,12 @@ import { MatCardModule } from '@angular/material/card';
 import { AltaPublicacionComponent } from './alta-publicacion/alta-publicacion.component';
 import {PublicacionesComponent}  from './publicaciones/publicaciones.component';
 import { FormsModule } from '@angular/forms';
-import {ServiceService} from './controller/service.service'
+import {ServiceService} from './controller/service.service';
+
+import { BusquedaPublicacionesComponent } from './busqueda-publicaciones/busqueda-publicaciones.component'
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FilterPipe } from './publicaciones/filter.pipe';
+import { LoginComponent } from './login/login/login.component'
 
 @NgModule({
   declarations: [
@@ -33,6 +39,10 @@ import {ServiceService} from './controller/service.service'
     PublicacionesComponent,
     OfertasComponent,
     OfertaComponent,
+    BusquedaPublicacionesComponent,
+    FilterPipe,
+    RegisterComponent,
+    LoginComponent
   
   ],
   imports: [
@@ -50,8 +60,9 @@ import {ServiceService} from './controller/service.service'
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-  
-    
+  MatAutocompleteModule,
+  RouterModule
+ 
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]
