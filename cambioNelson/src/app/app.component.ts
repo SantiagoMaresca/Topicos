@@ -10,6 +10,7 @@ import { ServiceService } from '../app/controller/service.service';
 export class AppComponent implements OnInit {
 
   ngOnInit(){
+    this.service.visible;
   }
   
 
