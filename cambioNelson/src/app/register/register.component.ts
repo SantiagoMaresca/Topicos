@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from '../controller/service.service';
 import { Router } from "@angular/router";
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material/icon';
 
 @Component({
   selector: 'app-register',
@@ -13,9 +15,25 @@ export class RegisterComponent implements OnInit {
   user: FormGroup;
   userExsist: boolean = false;  
 
-  constructor(private service: ServiceService, private router: Router) { }
+  constructor(private service: ServiceService, private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
+    iconRegistry.addSvgIcon(
+      'phone',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/phone-24px.svg'));
+    iconRegistry.addSvgIcon(
+        'key',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/vpn_key-24px (1).svg'));
+     iconRegistry.addSvgIcon(
+          'email',
+          sanitizer.bypassSecurityTrustResourceUrl('assets/mail_outline-24px.svg'));
+    iconRegistry.addSvgIcon(
+            'name',
+            sanitizer.bypassSecurityTrustResourceUrl('assets/account_circle-24px.svg'));
+  }
 
   ngOnInit() {
+    if(window.localStorage.ACCESS_TOKEN){
+      this.router.navigate(["publicaciones"])
+    }
     this.user = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),

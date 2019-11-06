@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder,Validators} from '@angular/forms';
+import { Router } from "@angular/router";
 
 
 
@@ -10,9 +11,12 @@ import {FormGroup,FormBuilder,Validators} from '@angular/forms';
 })
 export class PublicacionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    if(!window.localStorage.ACCESS_TOKEN){
+      this.router.navigate(["login"])
+    }
   }
 
 }

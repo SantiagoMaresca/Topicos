@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../controller/service.service';
+import {Router  } from "@angular/router";
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-
 import {map, startWith} from 'rxjs/operators';
 
 @Component({
@@ -12,16 +12,20 @@ import {map, startWith} from 'rxjs/operators';
 
 })
 export class PublicacionesComponent implements OnInit {
-  search='';
-  myControl = new FormControl();
-  public items;
-  constructor(private service: ServiceService) { }
+
+  private items;
+  constructor(private service: ServiceService, private router: Router) { }
 
   ngOnInit() {
-    
-    this.getPublicaciones();
-  
+    if(!window.localStorage.ACCESS_TOKEN){
+      this.router.navigate(["login"])
+    }
+        this.getPublicaciones();
   }
+
+  search='';
+  myControl = new FormControl();
+  
   async getPublicaciones() {
     let result = await this.service.getResourceAsync('http://localhost:3000/api/publication', undefined);
     console.log(result);

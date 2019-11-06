@@ -22,13 +22,19 @@ export class AltaPublicacionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.AltaPublicacionForm = this.formBuilder.group({
-      user: new FormControl('', [Validators.required]),
-      place: new FormControl('', [Validators.required]),
-      badge: new FormControl('', [Validators.required]),
-      quantity: new FormControl('', [Validators.required])
+    if(!window.localStorage.ACCESS_TOKEN){
+      this.router.navigate(["login"]);
+    }else{
+      this.AltaPublicacionForm = this.formBuilder.group({
+        user: new FormControl('', [Validators.required]),
+        place: new FormControl('', [Validators.required]),
+        badge: new FormControl('', [Validators.required]),
+        quantity: new FormControl('', [Validators.required])
+  
+      });
+    }
 
-    });
+
   }
   async PublicarSubmit(frmPub) {
     console.log(frmPub.value)

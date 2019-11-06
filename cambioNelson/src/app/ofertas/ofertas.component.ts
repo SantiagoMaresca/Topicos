@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-ofertas',
@@ -23,9 +24,12 @@ rowData = [
     {oferta_divisa: '115', usuario_ofertante: 'Karen', calificacion_usuario: 1, dinero_ahorrado: 10}
 ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    if(!window.localStorage.ACCESS_TOKEN){
+      this.router.navigate(["login"])
+    }
   }
 
 }
