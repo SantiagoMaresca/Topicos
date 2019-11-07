@@ -2,7 +2,7 @@ var User = require('../models/users');
 const jwt = require('jsonwebtoken');
 const bceypt = require('bcryptjs');
 const SECRET_KEY = 'secretkey123456';
-const nodemailer = 'nodemailer'
+const nodemailer = require('nodemailer');
 
 // obtiene todas las transacciones
 exports.getAllUser = function(req, res) {
@@ -121,19 +121,27 @@ exports.removeUser = function(req, res) {
 }
 
 
-exports.sendMail = function(asunto, mensaje, correoOrigen, callback) {
+exports.sendMail = function(req, res) {
+    const mensaje = "new publication"
+    const correoOrigen = "cambionelson.notifications@gmail.com"
+    const asunto = "new publication at Cambio Nelson"
     var transport = nodemailer.createTransport({
 
-        service: 'outlook',
+        host: 'smtp.gmail.com',
+        secure: true,
+        port: 465,
         auth: {
             user: correoOrigen,
             pass: 'cambionelson123'
+        },
+        tls: {
+            rejectUnauthorized: false
         }
     });
 
     var mailOptions = {
         from: correoOrigen,
-        to: "santiago.maresca26@gmail.com",
+        to: "gonzalobarrioslorenzo@gmail.com",
         subject: asunto,
         text: mensaje + " responder a " + correoOrigen,
         //html: pulsa <a href="url/confirmacion?token">aquí</a> para activar tu cuenta
@@ -142,11 +150,11 @@ exports.sendMail = function(asunto, mensaje, correoOrigen, callback) {
     transport.sendMail(mailOptions, function(error, info) {
         // console.log(msg_str_altervpn_ini);
         if (error) {
-            console.log("error al enviar");
-            callback(true);
+            console.log(error.message);
+            //callback(true);
         } else {
             console.log("correo enviado " + info.response);
-            callback(false);
+            // callback(false);
         }
         transport.close();
         // console.log(msg_str_altervpn_fin);

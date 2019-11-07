@@ -68,14 +68,13 @@ module.exports = function(app) {
     // Login 
     app.post('/api/login', userController.loginUser);
 
-    app.sendMail(userController.sendMail);
+    app.post('/api/publication/mail', userController.sendMail);
 
 
 
     /**############### COTIZACIONES ########################################### */
 
     app.post('/api/brou', brouController.getDiff);
-
     app.get('*', function(req, res) {
         res.sendfile('./angular/index.html'); // Carga única de la vista
     });

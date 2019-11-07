@@ -67,11 +67,7 @@ export class ServiceService {
   setLastPublicacion(publicacion) {
     this.lastPublicacion = publicacion;
   }
-  sendMail(asunto,mensaje,correo,callback) {
-      //this.http.request()
-
-  }
-
+ 
 
   hide() { this.visible = false; }
 
