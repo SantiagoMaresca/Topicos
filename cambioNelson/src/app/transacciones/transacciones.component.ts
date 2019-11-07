@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../controller/service.service';
 
+
 @Component({
   selector: 'app-transacciones',
   templateUrl: './transacciones.component.html',
@@ -13,12 +14,17 @@ export class TransaccionesComponent implements OnInit {
   ngOnInit() {
     this.getTransacciones();
   }
+
   async getTransacciones() {
-    let result = await this.service.getResourceAsync('http://localhost:3000/api/transaction', undefined);
+    //let endpoint = 'http://localhost:3000/api/userTransaction/'+localStorage.email
+    //let result = await this.service.getResourceAsync(endpoint, undefined);
+    let result = await this.service.getResourceAsync('https://api.karenstoletniy1996.now.sh/api/transaction', undefined);
     for (let item of result) {
       let offer = await this.getOfferInfo(item.offerID);
-      item.badge = offer.badge;
-      item.quantity = offer.quantity;
+      if (offer != null) {
+        item.badge = offer.badge;
+        item.quantity = offer.quantity;
+      }
     }
     this.items = result
   }
@@ -30,12 +36,15 @@ export class TransaccionesComponent implements OnInit {
   }
 
   async qualify(index) {
-    let score = { "lscore": 3 };
-    let endpoint = "http://localhost:3000/api/user/:" + this.items[index].userOf;
-    console.log(endpoint);
-    let agregarScore = await this.service.putResourceAsync(endpoint, score, undefined);
+    //let score = JSON.parse('{"lscore": 3 }');
+    let score = document.getElementsByClassName("score-selector")[index].value;
+    let body = JSON.parse('{"lscore": "' + score + '" }');
+    let userOf = this.items[index].userOf;
+    let endpoint = "http://localhost:3000/api/user/" + userOf;
+    console.log("Se le envía la calificación " + score + " al usuario " + userOf);
 
-    //this.service.setLastPublicacion(this.items[index]);
-    //window.localStorage.setItem("publicacion", JSON.stringify(this.items[index]));
+    let agregarScore = await this.service.putResourceAsync(endpoint, body, undefined);
   }
+
+
 }
