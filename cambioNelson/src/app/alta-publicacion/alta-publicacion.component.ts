@@ -34,7 +34,9 @@ export class AltaPublicacionComponent implements OnInit {
   async PublicarSubmit(frmPub) {
     console.log(frmPub.value)
     await this.service.postResource('http://localhost:3000/api/publication', frmPub.value)
-    await this.service.sendMail("cambioNelson","has creado una publicacion","cambionelsonnon-reply@outlook.com",false)
+    this.service.sendMail("cambioNelson","has creado una publicacion","cambionelsonnon-reply@outlook.com",true)
+ 
+
     alert("Publicacion ingresada con exito!")
     this.router.navigate(["/publicaciones"])
 

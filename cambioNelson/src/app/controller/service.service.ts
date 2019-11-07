@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Method } from 'ag-grid-community/dist/lib/widgets/componentAnnotations';
+import { HttpClient } from '@angular/common/http'
+
 
 @Injectable()
 
@@ -7,7 +10,7 @@ export class ServiceService {
 
   visible: boolean;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   //Para los metodos get
   //endpoint es toda la url completa
@@ -64,9 +67,12 @@ export class ServiceService {
   setLastPublicacion(publicacion) {
     this.lastPublicacion = publicacion;
   }
-  sendMail(origen,asunto,correo,callback) {
-    return this.sendMail(origen,asunto,correo,callback);
+  sendMail(asunto,mensaje,correo,callback) {
+      //this.http.request()
+
   }
+
+
   hide() { this.visible = false; }
 
   show() { this.visible = true; }

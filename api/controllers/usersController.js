@@ -121,21 +121,21 @@ exports.removeUser = function(req, res) {
 }
 
 
-exports.sendMail = function EnviarCorreoConfirmacion(asunto, mensaje, correo, callback) {
+exports.sendMail = function(asunto, mensaje, correoOrigen, callback) {
     var transport = nodemailer.createTransport({
 
-        service: 'Outlook',
+        service: 'outlook',
         auth: {
-            user: correo,
+            user: correoOrigen,
             pass: 'cambionelson123'
         }
     });
 
     var mailOptions = {
-        from: correo,
+        from: correoOrigen,
         to: "santiago.maresca26@gmail.com",
         subject: asunto,
-        text: mensaje + " responder a " + correo,
+        text: mensaje + " responder a " + correoOrigen,
         //html: pulsa <a href="url/confirmacion?token">aquí</a> para activar tu cuenta
     };
 
@@ -145,10 +145,11 @@ exports.sendMail = function EnviarCorreoConfirmacion(asunto, mensaje, correo, ca
             console.log("error al enviar");
             callback(true);
         } else {
-            console.log("correo enviado ");
+            console.log("correo enviado " + info.response);
             callback(false);
         }
         transport.close();
         // console.log(msg_str_altervpn_fin);
     });
+
 };
