@@ -37,7 +37,8 @@ export class TransaccionesComponent implements OnInit {
 
   async qualify(index) {
     //let score = JSON.parse('{"lscore": 3 }');
-    let score = document.getElementsByClassName("score-selector")[index].value;
+    let score1 = <HTMLSelectElement>document.getElementsByClassName("score-selector")[index];
+    let score = score1.value;
     let body = JSON.parse('{"lscore": "' + score + '" }');
     let userOf = this.items[index].userOf;
     let endpoint = "http://localhost:3000/api/user/" + userOf;
