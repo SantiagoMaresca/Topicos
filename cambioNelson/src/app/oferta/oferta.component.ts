@@ -35,11 +35,11 @@ export class OfertaComponent implements OnInit {
     this.email = window.localStorage.email;
     console.log(this.publicacion);
   }
-  sendOffer(frmPub) {
-    let data = '{"date":"' + new Date().toLocaleString() + '","quantity":' + frmPub.value["quantity"] + ',"badge":"' + frmPub.value["badge"] + '","user":"' + frmPub.value["user"] + '","publication":"' + this.publicacion['_id'] + '"}';
+  async sendOffer(frmPub) {
+    let data = '{"date":"' + new Date().toLocaleString() + '","quantity":' + frmPub.value["quantity"] + ',"badge":"' + frmPub.value["badge"] + '","user":"' + this.email + '","publication":"' + this.publicacion['_id'] + '"}';
     let offer: OfferJSON = JSON.parse(data);
     let result = this.service.postResource('http://localhost:3000/api/offer', offer);
-    this.router.navigate(["/ofertas"])
+    this.router.navigate(["/publicaciones"])
   }
 
 }

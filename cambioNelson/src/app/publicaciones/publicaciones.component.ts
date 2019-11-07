@@ -33,9 +33,9 @@ export class PublicacionesComponent implements OnInit {
   }
   
   sendToOffer(index) {
-    console.log(this.items[index]);
+    console.log(index);
     //this.service.setLastPublicacion(this.items[index]);
-    window.localStorage.setItem("publicacion", JSON.stringify(this.items[index]));
+    window.localStorage.setItem("publicacion", JSON.stringify(index));
   }
 
 
