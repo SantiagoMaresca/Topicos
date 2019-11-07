@@ -16,9 +16,9 @@ export class TransaccionesComponent implements OnInit {
   }
 
   async getTransacciones() {
-    //let endpoint = 'http://localhost:3000/api/userTransaction/'+localStorage.email
-    //let result = await this.service.getResourceAsync(endpoint, undefined);
-    let result = await this.service.getResourceAsync('http://localhost:3000/api/transaction', undefined);
+    //let endpoint = 'https://api.karenstoletniy1996.now.sh/api/userTransaction/' + localStorage.email
+    let endpoint = 'http://localhost:3000/api/userTransaction/' + localStorage.email
+    let result = await this.service.getResourceAsync(endpoint, undefined);
     for (let item of result) {
       let offer = await this.getOfferInfo(item.offerID);
       if (offer != null) {
@@ -30,6 +30,7 @@ export class TransaccionesComponent implements OnInit {
   }
 
   async getOfferInfo(offerid) {
+    //let endpoint = "https://api.karenstoletniy1996.now.sh/api/offer/" + offerid;
     let endpoint = "http://localhost:3000/api/offer/" + offerid;
     let result = await this.service.getResourceAsync(endpoint, undefined);
     return result;
@@ -41,6 +42,7 @@ export class TransaccionesComponent implements OnInit {
     let score = score1.value;
     let body = JSON.parse('{"lscore": "' + score + '" }');
     let userOf = this.items[index].userOf;
+    //let endpoint = "https://api.karenstoletniy1996.now.sh/api/user/" + userOf;
     let endpoint = "http://localhost:3000/api/user/" + userOf;
     console.log("Se le envía la calificación " + score + " al usuario " + userOf);
 
