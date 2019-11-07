@@ -1,8 +1,5 @@
-/cambioNelson/node_modules/
-/cambioNelson/node_modules/*
-cambioNelson/node_modules/
-cambioNelson/node_modules/*
-/api/node_modules/
-/api/node_modules/*
-api/node_modules/
-api/node_modules/*
+api//node_modules
+
+cambioNelson//node_modules
+//node_modules
+//cambioNelson//node_modules
