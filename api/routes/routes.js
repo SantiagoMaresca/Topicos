@@ -16,6 +16,8 @@ module.exports = function(app) {
 	app.get('/api/publicationUser/:email', ControllerPub.getAllPublicationsUser);
 	// Crear una nueva publicacion
 	app.post('/api/publication', ControllerPub.setPublicacion);
+	// Actualiza si la publicacion fue finalizada
+	app.put('/api/publication/:id', ControllerPub.updateIsActive);
 	// Eliminar los datos de una Persona
 	app.delete('/api/publication/:id', ControllerPub.removePublication);
 
@@ -36,8 +38,10 @@ module.exports = function(app) {
 	app.get('/api/offer/user/:email', offerController.getOffersByUser);
 	//crear oferta
 	app.post('/api/offer', offerController.setOffer);
+	//actualiza si la oferta fue finalizada
+	app.put('/api/offer/:id', offerController.updateIsActive);
 	//actualiza si la oferta fue aceptada
-	app.put('/api/offer/:id', offerController.updateIsAccepted);
+	app.put('/api/offer/accepted/:id', offerController.updateIsAccepted);
 	// eliminar oferta por su id
 	app.delete('/api/offer/:id', offerController.removeOffer);
 
