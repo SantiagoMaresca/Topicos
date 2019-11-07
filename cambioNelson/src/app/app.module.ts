@@ -27,7 +27,8 @@ import { TransaccionesComponent } from './transacciones/transacciones.component'
 import { BusquedaPublicacionesComponent } from './busqueda-publicaciones/busqueda-publicaciones.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FilterPipe } from './publicaciones/filter.pipe';
-import { LoginComponent } from './login/login/login.component'
+import { LoginComponent } from './login/login/login.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { LoginComponent } from './login/login/login.component'
     FormsModule,
     MatInputModule,
   MatAutocompleteModule,
-  RouterModule
+  RouterModule,
+  MatTableModule
  
   ],
   providers: [ServiceService],

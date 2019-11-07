@@ -18,7 +18,7 @@ export class TransaccionesComponent implements OnInit {
   async getTransacciones() {
     //let endpoint = 'http://localhost:3000/api/userTransaction/'+localStorage.email
     //let result = await this.service.getResourceAsync(endpoint, undefined);
-    let result = await this.service.getResourceAsync('https://api.karenstoletniy1996.now.sh/api/transaction', undefined);
+    let result = await this.service.getResourceAsync('http://localhost:3000/api/transaction', undefined);
     for (let item of result) {
       let offer = await this.getOfferInfo(item.offerID);
       if (offer != null) {

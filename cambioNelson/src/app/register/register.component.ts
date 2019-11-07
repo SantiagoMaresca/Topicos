@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
   async submitRegistre(form){
     try {
       
-      let response = await this.service.postResource('https://api.karenstoletniy1996.now.sh/api/user', form.value)
+      let response = await this.service.postResource('http://localhost:3000/api/user', form.value)
       if(response.status == 200){
         let data = await response.json()
         console.log(data)

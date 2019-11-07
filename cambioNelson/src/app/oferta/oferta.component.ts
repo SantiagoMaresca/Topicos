@@ -38,7 +38,7 @@ export class OfertaComponent implements OnInit {
   sendOffer(frmPub) {
     let data = '{"date":"' + new Date().toLocaleString() + '","quantity":' + frmPub.value["quantity"] + ',"badge":"' + frmPub.value["badge"] + '","user":"' + frmPub.value["user"] + '","publication":"' + this.publicacion['_id'] + '"}';
     let offer: OfferJSON = JSON.parse(data);
-    let result = this.service.postResource('https://api.karenstoletniy1996.now.sh/api/offer', offer);
+    let result = this.service.postResource('http://localhost:3000/api/offer', offer);
     this.router.navigate(["/ofertas"])
   }
 

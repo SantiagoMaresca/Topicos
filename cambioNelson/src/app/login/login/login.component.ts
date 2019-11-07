@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   async login(frmLogin){
     try {
       debugger;
-      let response = await this.service.postResource('https://api.karenstoletniy1996.now.sh/api/login', frmLogin.value)
+      let response = await this.service.postResource('http://localhost:3000/api/login', frmLogin.value)
       if(response.status == 200){
         let data = await response.json()
         window.localStorage.setItem("name", data.dataUser.name);
