@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 export class ServiceService {
   private lastPublicacion;
 
+  visible: boolean = true;
 
   constructor() { }
 
@@ -64,4 +65,8 @@ export class ServiceService {
   setLastPublicacion(publicacion) {
     this.lastPublicacion = publicacion;
   }
+
+  hide() { this.visible = false; }
+
+  show() { this.visible = true; }
 }

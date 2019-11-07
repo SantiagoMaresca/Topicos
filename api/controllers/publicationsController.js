@@ -51,7 +51,21 @@ exports.setPublicacion = function(req, res) {
 				});*/
 			});
 
-	}
+}
+exports.updateIsActive = async function (req, res) {
+	console.log(req.body)
+	Publications.updateOne({ _id: req.params.id }, { isActive: false }, function (err, user) {
+		if(err)
+			res.send(err);
+			Publications.findOne({ _id: req.params.id }, (err, use) => {
+				console.log(use)
+				if (err)
+					res.send(err)
+				res.json(use);
+			}
+			);
+	})
+}
 
 exports.removePublication = function(req, res) {
 	Publications.remove({_id : req.params.id}, function(err, persona) {

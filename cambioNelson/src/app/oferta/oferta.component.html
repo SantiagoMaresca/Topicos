@@ -1,9 +1,9 @@
 <mat-card class="example-card">
+    <div class="list-header-title">Ofertar a la publicación de {{publicacion.user}}</div>
   <form [formGroup]="ofertaForm" #frmPub="ngForm" (ngSubmit)="sendOffer(frmPub)" class="example-form" novalidate>
-    <p>Ofertar a la publicación de {{publicacion.user}}</p>
-    <p> {{publicacion.quantity}} {{publicacion.badge}}</p>
+    <p> <strong> {{publicacion.quantity}} {{publicacion.badge}}</strong></p>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Mi usuario" value="ejemplo@ejemplo.com" formControlName="user" required>
+      <input matInput placeholder="Mi usuario" value="{{email}}" formControlName="user" required >
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
@@ -20,6 +20,6 @@
       </select>
     </mat-form-field>
     <br>
-    <button mat-button type="submit">Ofertar</button>
+    <button mat-button type="submit" class="mat-raised-button mat-primary">Ofertar</button>
   </form>
 </mat-card>

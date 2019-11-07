@@ -7,7 +7,10 @@ const offerSchema = new Schema({
     quantity: { type: Number, required: true },
     badge: { type: String, required: true },    // (id de divisa)
     publication: { type: String, required: true },    // (id de publicacion)
-    user: { type: String, required: true }      // (email del usuario)
+    user: { type: String, required: true },      // (email del usuario)
+    isAccepted: {type: Boolean, require: true, default: false},
+    isActive: {type: Boolean, required: true, default: true}
+    
 });
 
 const Offer = mongoose.model('Offer', offerSchema);

@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 
 export class OfertaComponent implements OnInit {
   private publicacion;
+  private email;
   ofertaForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -20,6 +21,9 @@ export class OfertaComponent implements OnInit {
 
 
   ngOnInit() {
+    if(!window.localStorage.ACCESS_TOKEN){
+      this.router.navigate(["login"])
+    }
     this.ofertaForm = this.formBuilder.group({
       user: new FormControl('', [Validators.required]),
       badge: new FormControl('', [Validators.required]),
@@ -28,6 +32,7 @@ export class OfertaComponent implements OnInit {
     });
     //this.publicacion = this.service.getLastPublicacion();
     this.publicacion = JSON.parse(window.localStorage.getItem("publicacion"));
+    this.email = window.localStorage.email;
     console.log(this.publicacion);
   }
   sendOffer(frmPub) {

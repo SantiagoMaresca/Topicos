@@ -1,3 +1,50 @@
-<p>
-  register works!
-</p>
+<mat-toolbar>Cambio Nelson</mat-toolbar>
+<div class="container">
+  <mat-toolbar>Sing up</mat-toolbar>
+  <form name= "frmLogin" [formGroup]="user" #frmLogin="ngForm" class="example-form" (ngSubmit)="submitRegistre(frmLogin)">
+    <mat-error *ngIf="userExsist">
+      The user already exist.
+   </mat-error>
+    <!--Email-->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Correo"
+             [errorStateMatcher]="matcher"  formControlName="email">
+       <mat-icon matSuffix svgIcon="email">sentiment_very_satisfied</mat-icon>
+      <mat-error *ngIf="user.get('email').hasError('email') && !user.get('email').hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="user.get('email').hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+        <!--Name-->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Nombre"
+                 [errorStateMatcher]="matcher"  formControlName="name">
+      <mat-icon matSuffix svgIcon="name">sentiment_very_satisfied</mat-icon>
+      <mat-error *ngIf="user.get('name').hasError('required')">
+            Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+        <!--Phone-->
+    <mat-form-field class="example-full-width">
+          <input matInput placeholder="Telefono"
+                     [errorStateMatcher]="matcher"  formControlName="phone">
+          <mat-icon matSuffix svgIcon="phone">sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+            <!--Password-->
+    <mat-form-field class="example-full-width">
+        <mat-icon matSuffix svgIcon="key">sentiment_very_satisfied</mat-icon>
+        <input matInput placeholder="Contraseña"
+                         [errorStateMatcher]="matcher"  formControlName="password" type="password">
+
+        <mat-error *ngIf="user.get('password').hasError('required')">
+                    Password is <strong>required</strong>
+        </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Registre</button>
+  <a mat-raised-button routerLink="../login">Ya tienes usuario? Haz click aqui!</a>
+  </form>
+</div>
+
