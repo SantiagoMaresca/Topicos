@@ -38,7 +38,7 @@ export class AltaPublicacionComponent implements OnInit {
   }
   async PublicarSubmit(frmPub) {
     console.log(frmPub.value)
-    await this.service.postResource('http://localhost:3000/api/publication', frmPub.value)
+    await this.service.postResource('https://api.karenstoletniy1996.now.sh/api/publication', frmPub.value)
     alert("Publicacion ingresada con exito!")
     this.router.navigate(["/publicaciones"])
   }

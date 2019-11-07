@@ -27,7 +27,7 @@ export class PublicacionesComponent implements OnInit {
   myControl = new FormControl();
   
   async getPublicaciones() {
-    let result = await this.service.getResourceAsync('http://localhost:3000/api/publication', undefined);
+    let result = await this.service.getResourceAsync('https://api.karenstoletniy1996.now.sh/api/publication', undefined);
     console.log(result);
     this.items = result
   }
