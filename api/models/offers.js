@@ -9,6 +9,7 @@ const offerSchema = new Schema({
     publication: { type: String, required: true },    // (id de publicacion)
     user: { type: String, required: true },      // (email del usuario)
     isAccepted: {type: Boolean, require: true, default: false},
+    isActive: {type: Boolean, required: true, default: true}
     
 });
 
