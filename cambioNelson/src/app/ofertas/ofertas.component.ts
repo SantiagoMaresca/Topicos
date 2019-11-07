@@ -7,18 +7,6 @@ import { forkJoin } from 'rxjs';
 import { trigger, state, transition, style, animate } from '@angular/animations';
 
 
-const ELEMENT_DATA: any[] = [
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5},
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5},
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5},
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5},
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5},
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5},
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5},
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5},
-  {oferta: 1, ahorro: 5, usuario: "pepito", calificacion: 5}
-];
-
 
 @Component({
   selector: 'app-ofertas',
@@ -38,31 +26,36 @@ export class OfertasComponent implements OnInit {
   displayedColumns: string[] = ['quantity', 'badge', 'place'];
   dataSource;
   expandedElement: any | null;
-  valorDolar: number = 30;
-//   columnDefs = [
-//     {headerName: 'Oferta', field: 'oferta_divisa'},
-//     {headerName: 'Usuario', field: 'usuario_ofertante'},
-//     {headerName: 'Calificacion', field: 'calificacion_usuario'},
-//     {headerName: 'Ahorro', field: 'dinero_ahorrado'}
-// ];
 
-// rowData = [
-//     {oferta_divisa: '100', usuario_ofertante: 'Carlos Rodriguez', calificacion_usuario: 5, dinero_ahorrado: 3},
-//     {oferta_divisa: '105', usuario_ofertante: 'Casipeta', calificacion_usuario: 1, dinero_ahorrado: 5},
-//     {oferta_divisa: '104', usuario_ofertante: 'Fran', calificacion_usuario: 4, dinero_ahorrado: 5},
-//     {oferta_divisa: '120', usuario_ofertante: 'Beloso', calificacion_usuario: 1, dinero_ahorrado: 5},
-//     {oferta_divisa: '102', usuario_ofertante: 'Mares', calificacion_usuario: 4, dinero_ahorrado: 5},
-//     {oferta_divisa: '115', usuario_ofertante: 'Karen', calificacion_usuario: 1, dinero_ahorrado: 10}
-// ];
-
-//   constructor(private router: Router) { }
+  //La idea es tener aca las cotizaciones
+  cotizaciones = 30;
+  // let publicaciones = await this.service.getResourceAsync(`http://localhost:3000/api/publicationUser/${window.localStorage.getItem("email")}`, undefined);
 
 constructor(private service: ServiceService, private ofertasService: OfertasService) { }
   ngOnInit() {
 
     // this.getOfertas();
-    this.getPublications();
+    // this.getPublications();
+    this.loadData();
   }
+
+  async loadData() {
+
+    
+    let result = await this.service.getResourceAsync(`https://cotizaciones-brou.herokuapp.com/api/currency/latest`, undefined)
+    .then(res => {
+      console.log(res);
+
+      // Cargar cotizaciones
+      // this.cotizaciones = res['rates'];
+      
+      this.getPublications();
+    })
+  }
+
+
+  
+
 
   private getPublications(){
     this.ofertasService.getPublicacionByEmail(window.localStorage.getItem("email")).pipe(first(), mergeMap(
@@ -72,7 +65,17 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
             return this.ofertasService.getOfertas(publication._id).pipe(first(),map((ofertaResult) => {
               const ofertas = [];
               ofertaResult.map(ofert => {
-                ofertas.push({...ofert, ahorro: (publication.quantity * this.valorDolar)});
+                // if (this.cotizaciones[publication['badge']]['sell'] !== ()) {
+                //   console.log("llego")
+                //   brouRate = this.cotizaciones[publication['badge']]['sell']
+                //   ofertas.push({...ofert, ahorro: ofert['quantity'] -(publication.quantity * brouRate)});
+                // } else {
+                //   console.log("llego2")
+                //   ofertas.push({...ofert, ahorro: -1000000000});
+                // }
+
+                ofertas.push({...ofert, ahorro: ofert['quantity'] -(publication.quantity * this.cotizaciones)});
+                
               });
               return {...publication, ofertas: ofertas} ;
             }
@@ -82,7 +85,9 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
       }
     )).subscribe(
       (resultado) => {
-        this.dataSource = resultado.filter(x => x['ofertas'].length > 0);
+        let resultado1 = resultado.filter(x => x['ofertas'].length > 0);
+        console.log(resultado);
+        this.dataSource = resultado1;
       },
       () => {
         // error
@@ -130,7 +135,26 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
     return publicaciones
   }
 
-  public onClickOferta(oferta:any){
+  public onClickOferta(oferta:any)
+  {
+    console.log("llego aca");
+    this.aceptarOferta(oferta);
+  }
+
+  async aceptarOferta(oferta: any) {
     console.log(oferta);
+    let email = window.localStorage.getItem("email")
+    let data = '{"offerID":"' + oferta["_id"] + '","publicationID":"' + oferta["publication"] + '","userOf":"' + oferta["user"] + '","userPub":"' + email +'"}';
+    let transaction: TransactionJSON = JSON.parse(data);
+    let trancationURL = 'http://localhost:3000/api/transaction'
+    let trancationResult = this.service.postResource(trancationURL, transaction);
   }
 }
+
+interface TransactionJSON {
+  offerID: string;
+  publicationID: string;
+  userOf: string;
+  userPub: string;
+}
+
