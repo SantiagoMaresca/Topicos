@@ -129,11 +129,31 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
     return publicaciones
   }
 
-  public onClickOferta(oferta:any)
+  async onClickOferta(oferta:any)
   {
     console.log(oferta);
     this.finalizarPublicacion(oferta.publication);
+    let telefonoPub = await this.obtenerNumeroTel(window.localStorage.email);
+    let telefonoOf = await this.obtenerNumeroTel(oferta.user);
     alert("La oferta fue aceptada con éxito! Le llegara un email con más información.");
+    let message = 
+      {
+        asunto : "Cambio Nelson: Finalización de transacción",
+        "to" : window.localStorage.email,
+        "mensaje" : "La transacción fue éxitosa! Comunicate con el ofertante por email o via télefono: \n"+
+        "Telefono: " + telefonoOf + " \nEmail: "+ oferta.user + "\n Muchas gracias por confiar en Cambio Nelson."
+
+      }
+    await this.service.postResource(URL.API_URL+'/api/sendEmail', message);
+    let message2 = 
+    {
+      asunto : "Cambio Nelson: Finalización de transacción",
+      "to" : oferta.user,
+      "mensaje" : "Su oferta ha sido aceptada! Comunicate con el publicante por email o via télefono: \n"+
+      "Telefono: " + telefonoPub + " Email: "+ window.localStorage.email + "\n Muchas gracias por confiar en Cambio Nelson."
+
+    }
+  await this.service.postResource(URL.API_URL+'/api/sendEmail', message2);
     location.href = "./publicaciones"
   }
 
