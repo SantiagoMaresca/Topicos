@@ -121,6 +121,8 @@ exports.removeUser = function(req, res) {
 }
 
 exports.sendMail = function(req, res) {
+    //{quantity : req.body.quantity,badge: req
+    //const { user } = req.params.user;
     const mensaje = "new publication"
     const correoOrigen = "cambionelson.notifications@gmail.com"
     const asunto = "new publication at Cambio Nelson"
@@ -140,7 +142,7 @@ exports.sendMail = function(req, res) {
 
     var mailOptions = {
         from: correoOrigen,
-        to: { email: req.payload.email },
+        to: { user: req.body.user },
         subject: asunto,
         text: mensaje + " responder a " + correoOrigen,
         //html: pulsa <a href="url/confirmacion?token">aquí</a> para activar tu cuenta
