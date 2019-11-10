@@ -72,6 +72,9 @@ module.exports = function(app) {
 	// Login 
 	app.post('/api/login', userController.loginUser);
 
+	// Enviar email
+	app.post('/api/sendEmail', userController.sendMail);
+
 
 
 	/**############### COTIZACIONES ########################################### */

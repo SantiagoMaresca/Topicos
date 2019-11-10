@@ -32,9 +32,7 @@ exports.getPublicationById = function (req, res){
 			);
 }
 
-exports.setPublicacion = function(req, res) {
-	console.log("llega")
-	console.log(req.body)
+exports.setPublicacion = async function(req, res) {
 		Publications.create(
 			{quantity : req.body.quantity,badge: req.body.badge, place: req.body.place, user: req.body.user}, 
 			function(err, publications) {

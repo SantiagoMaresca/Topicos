@@ -2,6 +2,7 @@ var User = require('../models/users');
 const jwt =  require('jsonwebtoken');
 const bceypt = require('bcryptjs');
 const SECRET_KEY = 'secretkey123456';
+const nodemailer = require('nodemailer');
 
 // obtiene todas las transacciones
 exports.getAllUser = function (req, res) {
@@ -84,12 +85,14 @@ exports.loginUser = (req, res,next)=>{
                 //wrong password
                 return res.status(409).send({message:'Something went wrong'});
 
+				
             }
         }
     })
 }
 
 exports.updateScoreUser = async function (req, res) {
+	console.log(req.body);
 	const user2 =  await User.findOne({ email: req.params.email })
 	listaScore = user2.lscore
 	 
@@ -120,3 +123,49 @@ exports.removeUser = function (req, res) {
 		});
 	});
 }
+
+exports.sendMail = function(req, res) {
+	var params = {
+		asunto : req.body.asunto,
+		to : req.body.to,
+		mensaje : req.body.mensaje
+	}
+
+
+        const mensaje = req.body.mensaje
+        const correoOrigen = "cambionelson.notifications@gmail.com"
+		const asunto = req.body.asunto
+
+        var transport = nodemailer.createTransport({
+			service: 'gmail',
+            auth: {
+                user: correoOrigen,
+                pass: 'cambionelson123'
+            }
+        });
+
+		var mailOptions = {
+			from: correoOrigen,
+			to: req.body.to,
+			subject: asunto,
+			text: mensaje
+		  };
+
+		  transport.sendMail(mailOptions, function(error, info) {
+			// console.log(msg_str_altervpn_ini);
+			if (error) {
+				console.log(error);
+				res.send(error);
+				//callback(true);
+			} else {
+				console.log("correo enviado " + info);
+				res.send(info);
+				// callback(false);
+			}
+			transport.close();
+			// console.log(msg_str_altervpn_fin);
+		});
+
+    
+};
+
