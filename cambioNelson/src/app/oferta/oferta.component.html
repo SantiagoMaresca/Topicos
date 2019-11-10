@@ -3,21 +3,20 @@
   <form [formGroup]="ofertaForm" #frmPub="ngForm" (ngSubmit)="sendOffer(frmPub)" class="example-form" novalidate>
     <p> <strong> {{publicacion.quantity}} {{publicacion.badge}}</strong></p>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Mi usuario" value="{{email}}" formControlName="user" required >
+      <input matInput placeholder="Mi usuario" formControlName="user" required readonly>
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Monto de oferta" value="1000" formControlName="quantity" required>
+      <input matInput placeholder="Monto de oferta" formControlName="quantity" required>
     </mat-form-field>
     <br>
-    <mat-form-field class="example-full-width">
-      <select matNativeControl placeholder="Moneda" formControlName="badge" required>
-        <option value="UYU">UYU</option>
-        <option value="USD">USD</option>
-        <option value="ARS">ARS</option>
-        <option value="BRL">BRL</option>
-        <option value="EUR">EUR</option>
-      </select>
+    <mat-form-field>
+        <mat-label>Qué moneda ofreces?</mat-label>
+        <mat-select formControlName="badge" >
+            <mat-option *ngFor="let divisa of divisas" [value]="divisa.value">
+                {{divisa.viewValue}}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
     <br>
     <button mat-button type="submit" class="mat-raised-button mat-primary">Ofertar</button>

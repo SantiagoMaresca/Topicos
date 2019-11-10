@@ -5,6 +5,7 @@ import { OfertasService } from '../controller/ofertas.service';
 import { first, mergeMap, map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import { trigger, state, transition, style, animate } from '@angular/animations';
+import {URL } from '../config/config';
 
 
 
@@ -85,7 +86,7 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
       }
     )).subscribe(
       (resultado) => {
-        let resultado1 = resultado.filter(x => x['ofertas'].length > 0);
+        let resultado1 = resultado.filter(x => x["isActive"]);
         console.log(resultado);
         this.dataSource = resultado1;
       },
@@ -123,26 +124,33 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
   }
 
   async getPublicaciones(idPublicacion: String) {
-    let publicacionURL = 'http://localhost:3000/api/publication/' + idPublicacion
+    let publicacionURL = URL.API_URL+'/api/publication/' + idPublicacion
     let publicaciones = await this.service.getResourceAsync(publicacionURL, undefined);
     return publicaciones
   }
 
   public onClickOferta(oferta:any)
   {
-    console.log("llego aca");
-    this.aceptarOferta(oferta);
+    console.log(oferta);
+    this.finalizarPublicacion(oferta.publication);
+    alert("La oferta fue aceptada con éxito! Le llegara un email con más información.");
+    location.href = "./publicaciones"
   }
 
-  async aceptarOferta(oferta: any) {
-    console.log(oferta);
-    let email = window.localStorage.getItem("email")
-    let data = '{"offerID":"' + oferta["_id"] + '","publicationID":"' + oferta["publication"] + '","userOf":"' + oferta["user"] + '","userPub":"' + email +'"}';
-    let transaction: TransactionJSON = JSON.parse(data);
-    let trancationURL = 'http://localhost:3000/api/transaction'
-    let trancationResult = this.service.postResource(trancationURL, transaction);
+  async finalizarPublicacion(publicacion: any) {
+    let isAcceptedURL = URL.API_URL+'/api/publication/'+publicacion
+    this.service.putResourceAsync(isAcceptedURL, undefined, undefined);
+  }
+
+  async obtenerNumeroTel(user){
+    let userURL = URL.API_URL+'/api/user/' + user;
+    let userData = await this.service.getResourceAsync(userURL, undefined);
+    return userData.phone;
   }
 }
+
+
+
 
 interface TransactionJSON {
   offerID: string;

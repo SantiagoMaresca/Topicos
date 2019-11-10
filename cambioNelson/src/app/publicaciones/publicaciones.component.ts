@@ -4,6 +4,7 @@ import {Router  } from "@angular/router";
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {URL } from '../config/config';
 
 @Component({
   selector: 'app-publicaciones',
@@ -13,30 +14,39 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class PublicacionesComponent implements OnInit {
 
-  private items;
+  private items = [];
   constructor(private service: ServiceService, private router: Router) { }
 
   ngOnInit() {
     if(!window.localStorage.ACCESS_TOKEN){
       this.router.navigate(["login"])
     }
-        this.getPublicaciones();
+      this.getPublicaciones();
   }
 
   search='';
   myControl = new FormControl();
   
   async getPublicaciones() {
-    let result = await this.service.getResourceAsync('http://localhost:3000/api/publication', undefined);
-    console.log(result);
-    this.items = result
+    let result = await this.service.getResourceAsync(URL.API_URL+'/api/publication', undefined);
+    let email = window.localStorage.email
+    this.items = result.filter(word => word.user != email);
   }
   
   sendToOffer(index) {
     console.log(index);
-    //this.service.setLastPublicacion(this.items[index]);
     window.localStorage.setItem("publicacion", JSON.stringify(index));
   }
+
+  async setPuntaje(item){
+   /* let userURL = URL.API_URL+'/api/user/' + item.user;
+    let userData = await this.service.getResourceAsync(userURL, undefined);
+
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    var total = (userData.lscore.reduce(reducer))/userData.lscore.length;
+    return total;*/
+  }
+
 
 
 

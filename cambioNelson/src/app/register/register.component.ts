@@ -4,6 +4,7 @@ import { ServiceService } from '../controller/service.service';
 import { Router } from "@angular/router";
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
+import {URL } from '../config/config';
 
 @Component({
   selector: 'app-register',
@@ -46,7 +47,7 @@ export class RegisterComponent implements OnInit {
   async submitRegistre(form){
     try {
       
-      let response = await this.service.postResource('http://localhost:3000/api/user', form.value)
+      let response = await this.service.postResource(URL.API_URL+'/api/user', form.value)
       if(response.status == 200){
         let data = await response.json()
         console.log(data)
