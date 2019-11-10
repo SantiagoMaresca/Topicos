@@ -120,45 +120,43 @@ exports.removeUser = function(req, res) {
     });
 }
 
-exports.sendMail(params, res), {
-    function({ email: params }, res) {
-        const mensaje = "new publication"
-        const correoOrigen = "cambionelson.notifications@gmail.com"
-        const asunto = "new publication at Cambio Nelson"
-        var transport = nodemailer.createTransport({
+exports.sendMail = function(req, res) {
+    const mensaje = "new publication"
+    const correoOrigen = "cambionelson.notifications@gmail.com"
+    const asunto = "new publication at Cambio Nelson"
+    var transport = nodemailer.createTransport({
 
-            host: 'smtp.gmail.com',
-            secure: true,
-            port: 465,
-            auth: {
-                user: correoOrigen,
-                pass: 'cambionelson123'
-            },
-            tls: {
-                rejectUnauthorized: false
-            }
-        });
+        host: 'smtp.gmail.com',
+        secure: true,
+        port: 465,
+        auth: {
+            user: correoOrigen,
+            pass: 'cambionelson123'
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
 
-        var mailOptions = {
-            from: correoOrigen,
-            to: { email: params.payload.email },
-            subject: asunto,
-            text: mensaje + " responder a " + correoOrigen,
-            //html: pulsa <a href="url/confirmacion?token">aquí</a> para activar tu cuenta
-        };
+    var mailOptions = {
+        from: correoOrigen,
+        to: { email: req.payload.email },
+        subject: asunto,
+        text: mensaje + " responder a " + correoOrigen,
+        //html: pulsa <a href="url/confirmacion?token">aquí</a> para activar tu cuenta
+    };
 
-        transport.sendMail(mailOptions, function(error, info) {
-            // console.log(msg_str_altervpn_ini);
-            if (error) {
-                console.log(error.message);
-                //callback(true);
-            } else {
-                console.log("correo enviado " + info.response);
-                // callback(false);
-            }
-            transport.close();
-            // console.log(msg_str_altervpn_fin);
-        });
+    transport.sendMail(mailOptions, function(error, info) {
+        // console.log(msg_str_altervpn_ini);
+        if (error) {
+            console.log(error.message);
+            //callback(true);
+        } else {
+            console.log("correo enviado " + info.response);
+            // callback(false);
+        }
+        transport.close();
+        // console.log(msg_str_altervpn_fin);
+    });
 
-    }
-};
+}
