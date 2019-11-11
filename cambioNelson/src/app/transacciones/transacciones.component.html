@@ -2,11 +2,11 @@
   <mat-card class="example-card" *ngFor="let item of items; let i = index">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Publicación {{item.publicationID}}</mat-card-title>
-      <mat-card-subtitle>Fecha {{item.date}}</mat-card-subtitle>
+      <mat-card-title> <strong> Publicación {{item.publicationID}}</strong></mat-card-title>
+      <mat-card-subtitle>Fecha {{item.date.substring(0, 10)}}</mat-card-subtitle>
     </mat-card-header>
-    <p>Ofertante {{item.userOf}}</p>
-    <p>Intercambio por {{item.quantity}} {{item.badge}}</p>
+    <p>Usuario: <strong>{{item.userOf}}</strong></p>
+    <p><strong> Intercambio por {{item.quantity}} {{item.badge}}</strong></p>
     <select matNativeControl placeholder="Elige una calificación" class="score-selector" required>
       <option value="1">1</option>
       <option value="2">2</option>
@@ -14,6 +14,6 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>
-    <a href="/publicaciones" mat-button (click)="qualify(i)">Calificar</a>
+    <button mat-button class="mat-raised-button mat-primary" (click)="qualify(i)">Calificar</button>
   </mat-card>
 </div>

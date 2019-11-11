@@ -48,6 +48,8 @@ export class TransaccionesComponent implements OnInit {
     console.log("Se le envía la calificación " + score + " al usuario " + userOf);
 
     let agregarScore = await this.service.putResourceAsync(endpoint, {lscore: score}, undefined);
+    alert("Ah calificado al usuario "+userOf+" con exito!");
+    location.href = './publicaciones';
   }
 
 

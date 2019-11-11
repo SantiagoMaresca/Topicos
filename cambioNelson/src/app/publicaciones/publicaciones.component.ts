@@ -15,13 +15,15 @@ import {URL } from '../config/config';
 export class PublicacionesComponent implements OnInit {
 
   private items = [];
+  puntajes = [];
   constructor(private service: ServiceService, private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     if(!window.localStorage.ACCESS_TOKEN){
       this.router.navigate(["login"])
     }
-      this.getPublicaciones();
+      await this.getPublicaciones();
+
   }
 
   search='';
@@ -30,7 +32,12 @@ export class PublicacionesComponent implements OnInit {
   async getPublicaciones() {
     let result = await this.service.getResourceAsync(URL.API_URL+'/api/publication', undefined);
     let email = window.localStorage.email
-    this.items = result.filter(word => word.user != email);
+    let final = result.filter(word => word.user != email);
+    for(let key in final){
+      var puntaje = await this.setPuntaje(final[key].user);
+      this.puntajes.push(puntaje);
+    }
+    this.items = final;
   }
   
   sendToOffer(index) {
@@ -39,12 +46,16 @@ export class PublicacionesComponent implements OnInit {
   }
 
   async setPuntaje(item){
-   /* let userURL = URL.API_URL+'/api/user/' + item.user;
+    let userURL = URL.API_URL+'/api/user/' + item;
     let userData = await this.service.getResourceAsync(userURL, undefined);
 
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    var total = (userData.lscore.reduce(reducer))/userData.lscore.length;
-    return total;*/
+    if(userData != null && userData.lscore.length> 0){
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      var total = (userData.lscore.reduce(reducer))/userData.lscore.length;
+      return total;
+    }else{
+      return 0;
+    }
   }
 
 
