@@ -23,60 +23,34 @@ import {URL } from '../config/config';
 })
 
 export class OfertasComponent implements OnInit {
-  displayedColumnsSubTable: string[] = ['quantity', 'badge', 'date','save','accept'];
+  displayedColumnsSubTable: string[] = ['quantity', 'badge','user','date','save','accept'];
   displayedColumns: string[] = ['quantity', 'badge', 'place'];
   dataSource;
   expandedElement: any | null;
 
-  //La idea es tener aca las cotizaciones
-  cotizaciones = 30;
-  // let publicaciones = await this.service.getResourceAsync(`http://localhost:3000/api/publicationUser/${window.localStorage.getItem("email")}`, undefined);
-
 constructor(private service: ServiceService, private ofertasService: OfertasService) { }
   ngOnInit() {
-
-    // this.getOfertas();
-    // this.getPublications();
     this.loadData();
   }
 
   async loadData() {
-
-    
-    let result = await this.service.getResourceAsync(`https://cotizaciones-brou.herokuapp.com/api/currency/latest`, undefined)
-    .then(res => {
-      console.log(res);
-
-      // Cargar cotizaciones
-      // this.cotizaciones = res['rates'];
-      
       this.getPublications();
-    })
   }
-
-
-  
-
 
   private getPublications(){
     this.ofertasService.getPublicacionByEmail(window.localStorage.getItem("email")).pipe(first(), mergeMap(
       (publications) => {
         return forkJoin(
+          
           publications.map(publication=> {
             return this.ofertasService.getOfertas(publication._id).pipe(first(),map((ofertaResult) => {
               const ofertas = [];
-              ofertaResult.map(ofert => {
-                // if (this.cotizaciones[publication['badge']]['sell'] !== ()) {
-                //   console.log("llego")
-                //   brouRate = this.cotizaciones[publication['badge']]['sell']
-                //   ofertas.push({...ofert, ahorro: ofert['quantity'] -(publication.quantity * brouRate)});
-                // } else {
-                //   console.log("llego2")
-                //   ofertas.push({...ofert, ahorro: -1000000000});
-                // }
+              ofertaResult.map(async ofert => {
 
-                ofertas.push({...ofert, ahorro: ofert['quantity'] -(publication.quantity * this.cotizaciones)});
-                
+                console.log("ahorrooooo")
+                // obtener ahorro aqui
+                let ahorro = await this.getAhorro(publication, ofert)
+                ofertas.push({...ofert, ahorro: ahorro["diff"]});        
               });
               return {...publication, ofertas: ofertas} ;
             }
@@ -86,9 +60,11 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
       }
     )).subscribe(
       (resultado) => {
-        let resultado1 = resultado.filter(x => x["isActive"]);
+        console.log("resultado");
         console.log(resultado);
-        this.dataSource = resultado1;
+        // let resultado1 = resultado.filter(x => x['ofertas'].length > 0);
+        // this.dataSource = resultado1;
+        this.dataSource = resultado;
       },
       () => {
         // error
@@ -96,32 +72,23 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
     );
   }
 
-  async getOfertas() {
-/*
-    let publicaciones = await this.service.getResourceAsync(`http://localhost:3000/api/publicationUser/${window.localStorage.getItem("email")}`, undefined);
-    // Foreach publication get offers
-    console.log(publicaciones);
-  
-    const publicacionIdArray = [];
-    for (let publicacion in publicaciones) {
-      publicacionIdArray.push(publicaciones[oferta].publication);
+  async getAhorro(publicacion: any, oferta: any) {
+    let data = '{"inputCoin":"' + publicacion["badge"] + '","outputCoin":"' + oferta["badge"] + '","inputQuantity":' + publicacion["quantity"] + ',"outputQuantity":' + oferta["quantity"] +'}';
+    
+    let ahorroJSON: AhorroJSON = JSON.parse(data);
+
+    let ahorroURL = 'http://localhost:3000/api/brou';
+    let result = await this.service.postResource(ahorroURL, ahorroJSON)
+    if (result.status == 200) {
+      let res = await result.json()
+      return res;
     }
-    console.log(publicacionIdArray)
-    const uniqueSet = new Set(publicacionIdArray)
-    const uniqueArray= [];
-    uniqueSet.forEach(element => {
-      uniqueArray.push(element);
-    });
-    console.log(uniqueArray)
-    const publicacionesById = []
-    uniqueArray.forEach(element => {
-      let result2 = this.getPublicaciones(element);
-      publicacionesById.push(result2);
-      console.log("publicaciones:")
-      console.log(result2)
-    })
-*/
   }
+
+  // async convertAhorroToJSON(response: Response) {
+  //   let res = await response.json();
+  //   return res
+  // }
 
   async getPublicaciones(idPublicacion: String) {
     let publicacionURL = URL.API_URL+'/api/publication/' + idPublicacion
@@ -169,12 +136,16 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
   }
 }
 
-
-
-
 interface TransactionJSON {
   offerID: string;
   publicationID: string;
   userOf: string;
   userPub: string;
+}
+
+interface AhorroJSON {
+  inputCoin: string; 
+  outputCoin: string;
+  inputQuantity: number; 
+  outputQuantity: number; 
 }
