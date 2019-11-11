@@ -18,6 +18,6 @@
         <p>{{item.date.substring(0, 10)}}</p>
         <p>Puntaje: {{puntajes[i]}} </p>
         <p class="detail"> <strong> Vendo {{item.quantity}} {{item.badge}}! </strong></p>
-        <a mat-button class="mat-raised-button mat-primary" (click)="sendToOffer(i)" href="/oferta">Ofertar</a>
+        <a mat-button class="mat-raised-button mat-primary" (click)="sendToOffer(item)" href="/oferta">Ofertar</a>
     </mat-card>
 </div>

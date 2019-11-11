@@ -8,7 +8,7 @@
     [columnDefs]="columnDefs">
 </ag-grid-angular> -->
 
-<h1>Mis publicaciones</h1>
+<h1>Mis publicaciones ({{dataSource.length}})</h1>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 father" *ngIf="dataSource" multiTemplateDataRows>
 

@@ -25,7 +25,7 @@ import {URL } from '../config/config';
 export class OfertasComponent implements OnInit {
   displayedColumnsSubTable: string[] = ['quantity', 'badge','user','date','save','accept'];
   displayedColumns: string[] = ['quantity', 'badge', 'place'];
-  dataSource;
+  dataSource = [];
   expandedElement: any | null;
 
 constructor(private service: ServiceService, private ofertasService: OfertasService) { }
@@ -50,7 +50,7 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
                 console.log("ahorrooooo")
                 // obtener ahorro aqui
                 let ahorro = await this.getAhorro(publication, ofert)
-                ofertas.push({...ofert, ahorro: ahorro["diff"]});        
+                ofertas.push({...ofert, ahorro: ahorro["diff"].toFixed(1)});        
               });
               return {...publication, ofertas: ofertas} ;
             }
@@ -60,11 +60,9 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
       }
     )).subscribe(
       (resultado) => {
-        console.log("resultado");
+        let resultado1 = resultado.filter(x => x["isActive"]);
         console.log(resultado);
-        // let resultado1 = resultado.filter(x => x['ofertas'].length > 0);
-        // this.dataSource = resultado1;
-        this.dataSource = resultado;
+        this.dataSource = resultado1;
       },
       () => {
         // error
@@ -77,7 +75,7 @@ constructor(private service: ServiceService, private ofertasService: OfertasServ
     
     let ahorroJSON: AhorroJSON = JSON.parse(data);
 
-    let ahorroURL = 'http://localhost:3000/api/brou';
+    let ahorroURL = URL.API_URL+'/api/brou';
     let result = await this.service.postResource(ahorroURL, ahorroJSON)
     if (result.status == 200) {
       let res = await result.json()
