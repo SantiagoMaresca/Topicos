@@ -45,23 +45,24 @@ exports.getAlloffersPublication = function (req, res) {
 
 // crea una oferta
 exports.setOffer = function (req, res) {
+	console.log(req.body);
 	Offer.create(
 		{
-			date: req.body.date,
 			quantity: req.body.quantity,
 			badge: req.body.badge,
 			publication: req.body.publication,
 			user: req.body.user
 		},
-		function (err, offer) {
-			if (err)
-				res.send(err);
+		function (error, offer) {
+			if (error)
+				console.log(error)
+				res.send(error);
 			// Obtiene y devuelve todas las ofertas tras crear una de ellas
-			Offer.find(function (err, offer) {
+		/*	Offer.find(function (err, offer) {
 				if (err)
 					res.send(err)
 				res.json(offer);
-			});
+			});*/
 		});
 
 }
