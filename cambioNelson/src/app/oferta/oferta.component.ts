@@ -39,7 +39,7 @@ export class OfertaComponent implements OnInit {
 
   }
   async sendOffer(frmPub) {
-    let data = '{"date":"' + new Date().toLocaleString() + '","quantity":' + frmPub.value["quantity"] + ',"badge":"' + frmPub.value["badge"] + '","user":"' + this.email + '","publication":"' + this.publicacion['_id'] + '"}';
+    let data = '{"quantity":' + frmPub.value["quantity"] + ',"badge":"' + frmPub.value["badge"] + '","user":"' + this.email + '","publication":"' + this.publicacion['_id'] + '"}';
     let offer: OfferJSON = JSON.parse(data);
     let result = await this.service.postResource(URL.API_URL+'/api/offer', offer);
     console.log(result);
